@@ -23,6 +23,22 @@ public class LocationLocalModel {
     private String country;
     private List<String> formattedAddress = null;
 
+    public LocationLocalModel(String address, String crossStreet, Double lat, Double lng,
+        Integer distance, String postalCode, String cc, String city, String state, String country,
+        List<String> formattedAddress) {
+        this.address = address;
+        this.crossStreet = crossStreet;
+        this.lat = lat;
+        this.lng = lng;
+        this.distance = distance;
+        this.postalCode = postalCode;
+        this.cc = cc;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.formattedAddress = formattedAddress;
+    }
+
     public String getAddress() {
         return address;
     }

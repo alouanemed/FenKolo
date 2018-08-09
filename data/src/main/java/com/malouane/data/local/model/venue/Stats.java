@@ -1,16 +1,12 @@
 package com.malouane.data.local.model.venue;
 
+import android.arch.persistence.room.Entity;
 import com.squareup.moshi.Json;
 
 public class Stats {
-
-    @Json(name = "tipCount")
     private Integer tipCount;
-    @Json(name = "usersCount")
     private Integer usersCount;
-    @Json(name = "checkinsCount")
     private Integer checkinsCount;
-    @Json(name = "visitsCount")
     private Integer visitsCount;
 
     public Integer getTipCount() {

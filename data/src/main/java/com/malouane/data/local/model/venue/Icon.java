@@ -1,12 +1,11 @@
 package com.malouane.data.local.model.venue;
 
+import android.arch.persistence.room.Entity;
 import com.squareup.moshi.Json;
 
+@Entity(tableName = "Icon")
 public class Icon {
-
-    @Json(name = "prefix")
     private String prefix;
-    @Json(name = "suffix")
     private String suffix;
 
     public String getPrefix() {

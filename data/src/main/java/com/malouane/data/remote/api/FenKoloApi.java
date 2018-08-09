@@ -4,6 +4,7 @@ import com.malouane.data.BuildConfig;
 import com.malouane.data.remote.api.util.FourSquareRequestInter;
 import com.malouane.data.remote.api.util.MoshiConverters;
 import com.malouane.data.remote.model.VenueRemoteModel;
+import com.malouane.data.remote.model.VenueTypeRemoteModel;
 import com.serjltt.moshi.adapters.Wrapped;
 import com.squareup.moshi.Moshi;
 
@@ -53,5 +54,10 @@ public class FenKoloApi implements FenKoloService {
     @Override
     public Observable<List<VenueRemoteModel>> getVenues(int locationLatLong, String catId, String query, String radius) {
         return apiService.getVenues(locationLatLong, catId, query, radius);
+    }
+
+    @Override
+    public Observable<List<VenueTypeRemoteModel>> getVenueTypes() {
+        return apiService.getVenueTypes();
     }
 }

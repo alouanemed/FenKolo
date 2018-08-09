@@ -13,7 +13,7 @@ public class FenKoloDataMapper {
         return new Venue(venue.getId(), venue.getName(),  toEntity(venue.getLocationLocalModel()), venue.getVerified(), venue.getHasPerk());
     }
 
-    public final Location toEntity(@NotNull LocationLocalModel location) {
+    Location toEntity(@NotNull LocationLocalModel location) {
         return new Location(
                 location.getAddress(),
                 location.getCrossStreet(),

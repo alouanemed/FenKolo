@@ -1,14 +1,12 @@
 package com.malouane.data.local.model.venue;
 
+import android.arch.persistence.room.Entity;
 import com.squareup.moshi.Json;
 
-public class LabeledLatLng {
-
-    @Json(name = "label")
+@Entity(tableName = "LabeledLatLng")
+public class LabeledLatLng{
     private String label;
-    @Json(name = "lat")
     private Double lat;
-    @Json(name = "lng")
     private Double lng;
 
     public String getLabel() {

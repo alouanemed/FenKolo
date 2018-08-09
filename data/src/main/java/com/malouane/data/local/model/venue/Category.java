@@ -1,6 +1,11 @@
 package com.malouane.data.local.model.venue;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "Category")
 public class Category {
+    @PrimaryKey
     private String id;
     private String name;
     private String pluralName;
