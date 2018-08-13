@@ -1,4 +1,4 @@
-package com.malouane.fennaklo;
+package com.malouane.fnklo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.malouane.fennaklo", appContext.getPackageName());
+        assertEquals("com.malouane.fnklo", appContext.getPackageName());
     }
 }

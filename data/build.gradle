@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+
+android {
+  def ext = rootProject.extensions.ext
+  compileSdkVersion ext.android.compileSdk
+
+  defaultConfig {
+    minSdkVersion ext.android.minSdk
+    targetSdkVersion ext.android.targetSdk
+    versionCode ext.application.versionCode
+    versionName ext.application.versionName
+
+    testInstrumentationRunner ext.application.testInstrumentationRunner
+  }
+  sourceCompatibility = rootProject.extensions.ext.compiler.java
+  targetCompatibility = rootProject.extensions.ext.compiler.java
+
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+  compileOptions {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+  }
+}
+
+def API_URL = System.getenv("API_URL") ?: apiUrl
+def API_ID = System.getenv("API_ID") ?: clientId
+def API_SECRET = System.getenv("API_SECRET") ?: clientSecret
+
+android.buildTypes.each { type ->
+  type.buildConfigField "String", "API_URL", "\"$API_URL\""
+  type.buildConfigField "String", "API_ID", "\"$API_ID\""
+  type.buildConfigField "String", "API_SECRET", "\"$API_SECRET\""
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation project(':domain')
+  implementation dataDependencies
+  testImplementation dataTestDependencies
+}

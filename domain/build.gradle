@@ -1,0 +1,10 @@
+apply plugin: 'java-library'
+
+sourceCompatibility = rootProject.extensions.ext.compiler.java
+targetCompatibility = rootProject.extensions.ext.compiler.java
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation domainDependencies
+    testImplementation domainTestDependencies
+}
