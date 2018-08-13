@@ -10,14 +10,15 @@ import java.util.List;
 
 @Dao public interface VenueDao {
 
-  //TODO query list
-  @Query("SELECT * FROM Venue WHERE categories = :type") Maybe<List<VenueLocalModel>> findByType(
-      int type);
+  //TODO query list int locationLatLong, String catId, String query, String radius
+
+  @Query("SELECT * FROM Venue WHERE locationLocalModel = :locationLocalModel or categories = :catid")
+  Maybe<List<VenueLocalModel>> findByType(int locationLatLong, String catId);
 
   @Insert(onConflict = OnConflictStrategy.REPLACE) void insertAll(List<VenueLocalModel> list);
 
   //TODO query list
-  @Query("DELETE FROM Venue WHERE categories = :type") void deleteByType(int type);
+  @Query("DELETE FROM Venue WHERE categories = :catId") void deleteByType(String catId);
 
   @Query("SELECT * FROM Venue WHERE id = :id") Maybe<VenueLocalModel> getById(int id);
 

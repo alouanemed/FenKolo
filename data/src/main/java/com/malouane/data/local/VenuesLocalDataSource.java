@@ -13,11 +13,11 @@ public class VenuesLocalDataSource {
     venueDao.insertAll(list);
   }
 
-  public Observable<List<VenueLocalModel>> findByType(int type) {
-    return venueDao.findByType(type).toObservable();
+  public Observable<List<VenueLocalModel>> findByType(int locationLatLong, String catId) {
+    return venueDao.findByType(locationLatLong, catId).toObservable();
   }
 
-  public void deleteByType(int type) {
+  public void deleteByType(String type) {
     venueDao.deleteByType(type);
   }
 
