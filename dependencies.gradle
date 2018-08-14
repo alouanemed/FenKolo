@@ -1,8 +1,7 @@
 ext {
 
     compiler = [
-            java  : JavaVersion.VERSION_1_8,
-            kotlin: '1.2.20'
+            java  : JavaVersion.VERSION_1_8
     ]
 
     android = [
@@ -41,6 +40,7 @@ ext {
     androidKtxVersion = '0.1'
     glideVersion = '4.5.0'
     stethoVersion = '1.5.0'
+    TimberVersion = '4.7.1'
 
     // Testing
     jUnitVersion = '4.12'
@@ -58,7 +58,6 @@ ext {
 
     presentationDependencies = [
             "com.android.support:multidex:$multidexVersion",
-            "org.jetbrains.kotlin:kotlin-stdlib-jre8:$compiler.kotlin",
             "com.google.dagger:dagger:${daggerVersion}",
             "com.google.dagger:dagger-android-support:${daggerVersion}",
             "android.arch.lifecycle:runtime:$lifecycleVersion",
@@ -71,10 +70,11 @@ ext {
             "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
             "com.android.support.constraint:constraint-layout-solver:${constraintLayoutVersion}",
             "androidx.core:core-ktx:${androidKtxVersion}",
-            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            "io.reactivex.rxjava2:rxjava:${rxKotlinVersion}",
             "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             "com.github.bumptech.glide:glide:${glideVersion}",
             "android.arch.persistence.room:runtime:$roomVersion",
+              "com.jakewharton.timber:timber:$TimberVersion",
             "com.facebook.stetho:stetho:$stethoVersion"
     ]
 
@@ -90,8 +90,7 @@ ext {
 
     // Domain
     domainDependencies = [
-            "org.jetbrains.kotlin:kotlin-stdlib-jre8:$compiler.kotlin",
-            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+            "io.reactivex.rxjava2:rxjava:${rxKotlinVersion}"
     ]
 
     domainTestDependencies = [
@@ -105,15 +104,16 @@ ext {
     ]
 
     dataDependencies = [
-            "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            "io.reactivex.rxjava2:rxjava:${rxKotlinVersion}",
             "com.squareup.retrofit2:retrofit:$retrofitVersion",
             "com.squareup.okhttp3:logging-interceptor:$okHttpVersion",
             "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
             "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
-            "com.squareup.moshi:moshi-kotlin:$moshiVersion",
+            "com.squareup.moshi:moshi:$moshiVersion",
             "com.serjltt.moshi:moshi-lazy-adapters:$moshiLazyAdapterVersion",
             "android.arch.persistence.room:runtime:$roomVersion",
-            "android.arch.persistence.room:rxjava2:$roomVersion"
+            "android.arch.persistence.room:rxjava2:$roomVersion",
+            "com.jakewharton.timber:timber:$TimberVersion"
     ]
 
     dataTestDependencies = [
