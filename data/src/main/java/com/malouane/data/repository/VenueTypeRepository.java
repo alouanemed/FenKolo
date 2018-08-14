@@ -1,8 +1,9 @@
-package com.malouane.data.repository.mapper;
+package com.malouane.data.repository;
 
 import com.malouane.data.local.VenueTypesLocalDataSource;
 import com.malouane.data.local.model.VenuesTypeLocalModel;
 import com.malouane.data.remote.VenueTypeRemoteDataSource;
+import com.malouane.data.repository.mapper.VenueTypeMapper;
 import io.reactivex.Observable;
 import java.util.List;
 
