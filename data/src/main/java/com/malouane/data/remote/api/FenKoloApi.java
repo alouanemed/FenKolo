@@ -7,11 +7,9 @@ import com.malouane.data.remote.model.VenueRemoteModel;
 import com.malouane.data.remote.model.VenueTypeRemoteModel;
 import com.serjltt.moshi.adapters.Wrapped;
 import com.squareup.moshi.Moshi;
-
+import io.reactivex.Observable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -60,4 +58,9 @@ public class FenKoloApi implements FenKoloService {
     public Observable<List<VenueTypeRemoteModel>> getVenueTypes() {
         return apiService.getVenueTypes();
     }
+
+    /*@Override
+    public Observable<VenueTypeRemoteModel> getVenueById(int id) {
+        return apiService.getVenueById(id);
+    }*/
 }

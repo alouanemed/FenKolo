@@ -17,6 +17,10 @@ public class VenueTypesLocalDataSource {
     return venueTypeDao.getById(id).toObservable();
   }
 
+  public Observable<List<VenuesTypeLocalModel>> getAll() {
+    return venueTypeDao.getAll().toObservable();
+  }
+
   public VenueTypesLocalDataSource(@NotNull VenueTypeDao venueTypeDao) {
     this.venueTypeDao = venueTypeDao;
   }
