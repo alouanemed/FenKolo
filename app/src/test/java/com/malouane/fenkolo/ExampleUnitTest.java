@@ -2,7 +2,7 @@ package com.malouane.fnklo;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  *  local unit test, which will execute on the development machine (host).
