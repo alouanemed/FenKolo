@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class VenueTypeRemoteDataSource {
   private final FenKoloApi fenKoloApi;
 
-  public Observable<List<VenueTypeRemoteModel>> getVenueTypes() {
+  public Observable<List<VenueTypeRemoteModel>> getAll() {
     return fenKoloApi.getVenueTypes();
   }
 

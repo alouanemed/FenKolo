@@ -1,9 +1,7 @@
 package com.malouane.data.repository.mapper;
 
-import com.malouane.data.local.model.VenueLocalModel;
-import com.malouane.data.local.model.venue.LocationLocalModel;
-import com.malouane.data.remote.model.VenueRemoteModel;
-import com.malouane.data.remote.model.venue.LocationRemoteModel;
+import com.malouane.data.local.model.VenuesTypeLocalModel;
+import com.malouane.data.remote.model.VenueTypeRemoteModel;
 import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
@@ -12,25 +10,17 @@ import org.jetbrains.annotations.NotNull;
 /* Map remote entities to local one
  */
 public class VenueTypeMapper {
-  public final VenueLocalModel toLocal(@NotNull VenueRemoteModel venue) {
-    return new VenueLocalModel(venue.getId(), venue.getName(),
-        toEntity(venue.getLocationRemoteModel()), venue.getVerified(), venue.getHasPerk());
+  public final VenuesTypeLocalModel toLocal(@NotNull VenueTypeRemoteModel venueType) {
+    return new VenuesTypeLocalModel(venueType.getId(), venueType.getName());
   }
 
-  @NotNull public final List toLocal(@NotNull List<VenueRemoteModel> items) {
-    List<VenueLocalModel> outputList = new ArrayList<VenueLocalModel>();
+  @NotNull public List<VenuesTypeLocalModel> toLocal(@NotNull List<VenueTypeRemoteModel> items) {
+    List<VenuesTypeLocalModel> outputList = new ArrayList<VenuesTypeLocalModel>();
 
-    for (VenueRemoteModel item : items) {
+    for (VenueTypeRemoteModel item : items) {
       outputList.add(toLocal(item));
     }
-
     return outputList;
   }
 
-  private LocationLocalModel toEntity(@NotNull LocationRemoteModel location) {
-    return new LocationLocalModel(location.getAddress(), location.getCrossStreet(),
-        location.getLat(), location.getLng(), location.getDistance(), location.getPostalCode(),
-        location.getCc(), location.getCity(), location.getState(), location.getPostalCode(),
-        location.getFormattedAddress());
-  }
 }

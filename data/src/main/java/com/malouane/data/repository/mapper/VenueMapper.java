@@ -12,12 +12,12 @@ import org.jetbrains.annotations.NotNull;
 /* Map remote entities to local one
  */
 public class VenueMapper {
-  public final VenueLocalModel toLocal(@NotNull VenueRemoteModel venue) {
+  public VenueLocalModel toLocal(@NotNull VenueRemoteModel venue) {
     return new VenueLocalModel(venue.getId(), venue.getName(),
         toEntity(venue.getLocationRemoteModel()), venue.getVerified(), venue.getHasPerk());
   }
 
-  @NotNull public final List<VenueLocalModel> toLocal(@NotNull List<VenueRemoteModel> items) {
+  @NotNull public List<VenueLocalModel> toLocal(@NotNull List<VenueRemoteModel> items) {
     List<VenueLocalModel> outputList = new ArrayList<VenueLocalModel>();
 
     for (VenueRemoteModel item : items) {

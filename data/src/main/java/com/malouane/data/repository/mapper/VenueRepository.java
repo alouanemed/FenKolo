@@ -33,4 +33,8 @@ public class VenueRepository {
         .flatMap(it -> Observable.concat(localList, remoteList).firstElement().toObservable());
   }
 
+  public Observable<VenueLocalModel> getById(int id) {
+    Observable<VenueLocalModel> local = localDataSource.getById(id);
+    return null;
+  }
 }
