@@ -2,7 +2,7 @@ package com.malouane.fenkolo.domain.common;
 
 import io.reactivex.Scheduler;
 
-interface Schedulers {
+public interface Schedulers {
   Scheduler subscribeOn();
 
   Scheduler observeOn();
