@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 }, version = 1, exportSchema = false) @TypeConverters(DateConverters.class)
 public abstract class DiskRoomDatabase extends RoomDatabase {
 
-  @NotNull public abstract VenueDao venuesDao();
+  @NotNull public abstract VenueDao venueDao();
 
   @NotNull public abstract VenueTypeDao venueTypeDao();
 
