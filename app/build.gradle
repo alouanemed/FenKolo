@@ -14,6 +14,7 @@ android {
         vectorDrawables.useSupportLibrary true
         multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -35,6 +36,10 @@ android {
             returnDefaultValues true
         }
         animationsDisabled true
+    }
+    compileOptions {
+      sourceCompatibility = rootProject.extensions.ext.compiler.java
+      targetCompatibility = rootProject.extensions.ext.compiler.java
     }
 }
 
