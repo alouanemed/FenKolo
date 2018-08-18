@@ -49,5 +49,6 @@ dependencies {
     implementation project(':data')
     implementation presentationDependencies
     testImplementation presentationTestDependencies
+  annotationProcessor  presentationAptDependencies
     androidTestImplementation presentationInstrumentationTestDependencies
 }

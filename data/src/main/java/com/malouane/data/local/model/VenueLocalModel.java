@@ -3,20 +3,17 @@ package com.malouane.data.local.model;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.Relation;
 import android.arch.persistence.room.TypeConverters;
-
 import com.malouane.data.local.CategoriesConverters;
 import com.malouane.data.local.model.venue.Category;
 import com.malouane.data.local.model.venue.LocationLocalModel;
-import com.squareup.moshi.Json;
-
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 @Entity(tableName = "Venue")
 @TypeConverters(CategoriesConverters.class)
 public class VenueLocalModel {
-    @PrimaryKey
+    @PrimaryKey @NotNull
     private String id;
     private String name;
     @Embedded

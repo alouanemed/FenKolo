@@ -50,7 +50,7 @@ ext {
 
     // Presentation
 
-    presentationKaptDependencies = [
+    presentationAptDependencies = [
             "android.arch.lifecycle:compiler:$lifecycleVersion",
             "com.google.dagger:dagger-compiler:${daggerVersion}",
             "com.google.dagger:dagger-android-processor:${daggerVersion}"
@@ -99,7 +99,7 @@ ext {
     ]
 
     // Data
-    dataKaptDependencies = [
+    dataAptDependencies = [
             "android.arch.persistence.room:compiler:$roomVersion"
     ]
 

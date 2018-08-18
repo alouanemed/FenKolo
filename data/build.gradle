@@ -44,5 +44,6 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation project(':domain')
   implementation dataDependencies
+  annotationProcessor  dataAptDependencies
   testImplementation dataTestDependencies
 }
