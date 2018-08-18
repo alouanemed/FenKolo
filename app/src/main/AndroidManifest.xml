@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.malouane.fenkolo">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -14,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".startup.StartupActivity"
+            android:name=".startup.LaunchActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme.Startup">
+            android:theme="@style/AppTheme.Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,16 +25,6 @@
         <activity
             android:name=".home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".event.detail.EventActivity"
-            android:label=""
-            android:parentActivityName=".home.HomeActivity"
-            android:theme="@style/AppTheme.Event"
-            tools:targetApi="jelly_bean">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.malouane.fenkolo.home.HomeActivity"/>
-        </activity>
     </application>
 
 </manifest>
