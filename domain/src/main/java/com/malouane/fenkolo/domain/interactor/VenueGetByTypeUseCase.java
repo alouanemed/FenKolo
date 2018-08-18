@@ -18,6 +18,7 @@ public class VenueGetByTypeUseCase extends UseCase<CustomPair, List<Venue>> {
 
   @Override public Observable<List<Venue>> buildObservable(CustomPair input) {
     if (input == null) throw new MissingParamsException(VenueGetByTypeUseCase.class);
-    return gateway.getVenues();
+    return gateway.getVenues(input.getLocationLatLong(), input.getCatId(), input.getQuery(),
+        "", input.isSecond());
   }
 }

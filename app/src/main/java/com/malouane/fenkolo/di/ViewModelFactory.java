@@ -6,6 +6,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
+import com.malouane.fenkolo.features.categories.CategoriesViewModel;
+import com.malouane.fenkolo.startup.LaunchViewModel;
+import kotlin.Suppress;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
@@ -20,7 +23,11 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     this.context = context;
   }
 
-  @NonNull @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+  @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+    if(modelClass == LaunchViewModel.class)
+      return (T) new LaunchViewModel(context, typeGetAllUseCase);
+    else if(modelClass == CategoriesViewModel.class)
+      return (T) new CategoriesViewModel(context, typeGetAllUseCase);
     return null;
   }
 }

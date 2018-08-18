@@ -11,12 +11,12 @@ import javax.inject.Singleton;
 
 @Module public class PresentationModule {
 
-  @Provides @Singleton private AppNavigator provideNavigator() {
+  @Provides @Singleton public AppNavigator provideNavigator() {
     return new AppNavigator();
   }
 
   @Provides @Singleton
-  private ViewModelFactory ViewModelFactory(VenueTypeGetAllUseCase typeGetAllUseCase,
+  public ViewModelFactory ViewModelFactory(VenueTypeGetAllUseCase typeGetAllUseCase,
       VenueGetByTypeUseCase byTypeUseCase, Context context) {
     return new ViewModelFactory(typeGetAllUseCase, byTypeUseCase, context);
   }

@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 import io.reactivex.exceptions.Exceptions;
-import kotlin.jvm.internal.Intrinsics;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -14,7 +13,6 @@ import okhttp3.Response;
 public class FourSquareRequestInter implements Interceptor {
     @NotNull
     public Response intercept(@NotNull Chain chain) throws IOException {
-        Intrinsics.checkParameterIsNotNull(chain, "chain");
         Request currentRequest = chain.request();
 
         HttpUrl url = currentRequest.url().newBuilder().addQueryParameter("name","value").build();

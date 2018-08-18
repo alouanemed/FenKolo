@@ -1,4 +1,4 @@
-package com.malouane.fenkolo.common.util;
+package com.malouane.fenkolo.common.util.databinding;
 
 import android.databinding.BindingAdapter;
 import android.support.design.widget.BaseTransientBottomBar;

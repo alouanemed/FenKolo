@@ -3,6 +3,7 @@ package com.malouane.fenkolo.startup;
 import android.app.Application;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
+import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.common.BaseAndroidViewModel;
 import com.malouane.fenkolo.domain.entity.VenueType;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
@@ -21,7 +22,7 @@ public class LaunchViewModel extends BaseAndroidViewModel {
   private VenueTypeGetAllUseCase getAllUseCase;
   private Context context;
 
-  public LaunchViewModel(Application context, VenueTypeGetAllUseCase getAllUseCase) {
+  public LaunchViewModel(Context context, VenueTypeGetAllUseCase getAllUseCase) {
     super((Application) context.getApplicationContext());
     this.getAllUseCase = getAllUseCase;
     this.context = context;
@@ -43,7 +44,7 @@ public class LaunchViewModel extends BaseAndroidViewModel {
       }
 
       @Override public void onError(Throwable e) {
-        error.setValue(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.unknown_error)
+        error.setValue(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_unknown)
             : e.getMessage());
       }
 
