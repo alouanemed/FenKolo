@@ -1,47 +1,49 @@
 package com.malouane.fenkolo.features.categories;
 
 import android.app.Application;
-import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import com.malouane.fenkolo.common.BaseAndroidViewModel;
 import com.malouane.fenkolo.domain.entity.VenueType;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class CategoriesViewModel extends BaseAndroidViewModel {
-
-  private MutableLiveData<Boolean> resultLiveData;
-  private MutableLiveData<String> errorLiveData;
-
-  private MutableLiveData<Boolean> result;
-  private MutableLiveData<String> error;
-
+  private final ObservableBoolean loading;
+  private final ObservableArrayList<VenueType> result;
+  private final ObservableBoolean empty;
+  private final ObservableField<String> error;
   private VenueTypeGetAllUseCase getAllUseCase;
+  private Context context;
 
-  public CategoriesViewModel(Application context, VenueTypeGetAllUseCase getAllUseCase) {
+  public CategoriesViewModel(Context context, VenueTypeGetAllUseCase getAllUseCase) {
     super((Application) context.getApplicationContext());
+    this.context = context;
+    this.loading = new ObservableBoolean();
+    this.result = new ObservableArrayList<VenueType>();
+    this.empty = new ObservableBoolean();
+    this.error = new ObservableField<String>();
     this.getAllUseCase = getAllUseCase;
-
-    resultLiveData = new MutableLiveData<>();
-    errorLiveData = new MutableLiveData<>();
-
-    error = errorLiveData;
-    result = resultLiveData;
-  }
-
-  public void startup() {
-    addDisposable(getAllVenueCategories());
   }
 
   private Disposable getAllVenueCategories() {
     return getAllUseCase.perform(null).subscribeWith(new DisposableObserver<List<VenueType>>() {
-      @Override public void onNext(List<VenueType> venueTypes) {
-        result.setValue(true);
+      @Override public void onNext(List<VenueType> venueTypeList) {
+        loading.set(false);
+        result.clear();
+        result.addAll(venueTypeList);
+        empty.set(venueTypeList.isEmpty());
       }
 
       @Override public void onError(Throwable e) {
-        error.setValue(e.getLocalizedMessage().isEmpty() ? "" : e.getMessage());
+        loading.set(false);
+        error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.unknown_error)
+            : e.getMessage());
       }
 
       @Override public void onComplete() {
@@ -50,11 +52,23 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
     });
   }
 
-  public MutableLiveData<Boolean> getResult() {
-    return result;
+  @NotNull public final ObservableBoolean getLoading() {
+    return this.loading;
   }
 
-  public MutableLiveData<String> getError() {
-    return error;
+  @NotNull public final ObservableArrayList getResult() {
+    return this.result;
+  }
+
+  @NotNull public final ObservableBoolean getEmpty() {
+    return this.empty;
+  }
+
+  @NotNull public final ObservableField getError() {
+    return this.error;
+  }
+
+  public void loadCategoriesList() {
+    addDisposable(getAllVenueCategories());
   }
 }
