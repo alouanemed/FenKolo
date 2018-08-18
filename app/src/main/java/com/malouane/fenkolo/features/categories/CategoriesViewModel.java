@@ -5,6 +5,7 @@ import android.content.Context;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.common.BaseAndroidViewModel;
 import com.malouane.fenkolo.domain.entity.VenueType;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
@@ -42,7 +43,7 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
 
       @Override public void onError(Throwable e) {
         loading.set(false);
-        error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.unknown_error)
+        error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_unknown)
             : e.getMessage());
       }
 

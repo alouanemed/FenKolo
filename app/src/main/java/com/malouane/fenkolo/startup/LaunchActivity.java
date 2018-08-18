@@ -7,7 +7,7 @@ import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import com.malouane.fenkolo.AppNavigator;
-import com.malouane.fenkolo.common.util.ViewBindingAdapters;
+import com.malouane.fenkolo.common.util.databinding.ViewBindingAdapters;
 import com.malouane.fenkolo.di.ViewModelFactory;
 import dagger.android.AndroidInjection;
 import javax.inject.Inject;
