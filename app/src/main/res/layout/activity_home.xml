@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.malouane.fenkolo.home.HomeActivity"
     >
-
   <data>
-
     <variable
         name="viewModel"
         type="com.malouane.fenkolo.features.categories.CategoriesViewModel"
@@ -59,8 +57,9 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:eventTypeAdapter="@{viewModel.result}"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:venueTypeAdapter="@{viewModel.result}"
+
         />
 
     <ProgressBar

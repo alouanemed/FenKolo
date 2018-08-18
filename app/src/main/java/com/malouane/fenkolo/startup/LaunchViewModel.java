@@ -32,7 +32,7 @@ public class LaunchViewModel extends BaseAndroidViewModel {
     result = resultLiveData;
   }
 
-  public void startup() {
+  void startup() {
     addDisposable(getAllVenueCategories());
   }
 
