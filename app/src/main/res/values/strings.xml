@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">fnklo</string>
+  <string name="app_name">FenNaklo</string>
+  <string name="am__error_unknown">Unknown error</string>
 </resources>

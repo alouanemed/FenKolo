@@ -1,4 +1,14 @@
 package com.malouane.fenkolo;
 
+import android.app.Activity;
+import android.content.Intent;
+import com.malouane.fenkolo.home.HomeActivity;
+
 public class AppNavigator {
+
+  public void navigateToHome(Activity activity) {
+    Intent intent = new Intent(activity, HomeActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    activity.startActivity(intent);
+  }
 }
