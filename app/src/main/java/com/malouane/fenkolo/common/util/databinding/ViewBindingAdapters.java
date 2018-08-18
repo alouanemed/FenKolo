@@ -32,4 +32,8 @@ public class ViewBindingAdapters {
       viewPager.setAdapter((PagerAdapter) (new CategoriesPagerAdapter(fm, items)));
     }
   }
+
+  @BindingAdapter("fadeView") public static void fadeView(View view, Boolean show) {
+    view.setVisibility(show ? View.VISIBLE : View.GONE);
+  }
 }
