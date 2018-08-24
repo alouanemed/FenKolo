@@ -1,3 +1,3 @@
-# FenNaklo
+# FeNaklo
 
-Android App to get nearest restaurent
+Android App to get nearest restaurent WIP
