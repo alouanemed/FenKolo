@@ -6,7 +6,7 @@ import io.reactivex.Observable;
 import java.util.List;
 
 public interface FenKoloDataGateway {
-    Observable<List<Venue>> getVenues(int locationLatLong, String catId, String query,
+  Observable<List<Venue>> getVenues(String locationLatLong, String catId, String query,
         String radius, boolean refresh);
 
     Observable<List<VenueType>> getVenueTypes();

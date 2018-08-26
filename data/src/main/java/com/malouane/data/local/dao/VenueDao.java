@@ -12,8 +12,8 @@ import java.util.List;
 
   //TODO query list int locationLatLong, String catId, String query, String radius
 
-  @Query("SELECT * FROM Venue WHERE locationLocalModel = :locationLocalModel or categories = :catid")
-  Maybe<List<VenueLocalModel>> findByType(int locationLatLong, String catId);
+  @Query("SELECT * FROM Venue WHERE location_address = :location_address ")
+  Maybe<List<VenueLocalModel>> findByType(String location_address);
 
   @Insert(onConflict = OnConflictStrategy.REPLACE) void insertAll(List<VenueLocalModel> list);
 

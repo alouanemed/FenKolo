@@ -1,23 +1,16 @@
 package com.malouane.data.local.model;
 
-import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
-import com.malouane.data.local.CategoriesConverters;
-import com.malouane.data.local.model.venue.Category;
-import com.malouane.data.local.model.venue.LocationLocalModel;
-import java.util.List;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "VenueType")
 public class VenuesTypeLocalModel {
-    @PrimaryKey
-    private String id;
+  @PrimaryKey @NonNull private String id = "";
     private String name;
 
     public VenuesTypeLocalModel(String id, String name) {
-        this.id = id;
-        this.name = name;
+
     }
 
     public String getId() {

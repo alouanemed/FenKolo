@@ -1,7 +1,6 @@
 package com.malouane.data.local.model.venue;
 
 import android.arch.persistence.room.Entity;
-import com.squareup.moshi.Json;
 
 @Entity(tableName = "LabeledLatLng")
 public class LabeledLatLng{
@@ -32,5 +31,8 @@ public class LabeledLatLng{
     public void setLng(Double lng) {
         this.lng = lng;
     }
+
+  public LabeledLatLng() {
+  }
 
 }

@@ -22,6 +22,8 @@ public class FenKoloApp extends DaggerApp {
   @Override public void onCreate() {
     super.onCreate();
 
+    Timber.plant(new Timber.DebugTree());
+
     Stetho.initializeWithDefaults(this);
 
     RxJavaPlugins.setErrorHandler(Timber::e);

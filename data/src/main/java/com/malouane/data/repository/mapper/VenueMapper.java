@@ -30,7 +30,6 @@ public class VenueMapper {
   private LocationLocalModel toEntity(@NotNull LocationRemoteModel location) {
     return new LocationLocalModel(location.getAddress(), location.getCrossStreet(),
         location.getLat(), location.getLng(), location.getDistance(), location.getPostalCode(),
-        location.getCc(), location.getCity(), location.getState(), location.getPostalCode(),
-        location.getFormattedAddress());
+        location.getCc(), location.getCity(), location.getState(), location.getPostalCode());
   }
 }

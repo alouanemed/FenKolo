@@ -1,7 +1,6 @@
 package com.malouane.data.local.model.venue;
 
 import android.arch.persistence.room.Entity;
-import com.squareup.moshi.Json;
 
 @Entity(tableName = "Icon")
 public class Icon {
@@ -24,4 +23,6 @@ public class Icon {
         this.suffix = suffix;
     }
 
+  public Icon() {
+  }
 }

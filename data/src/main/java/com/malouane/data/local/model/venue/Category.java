@@ -61,4 +61,6 @@ public class Category {
         this.primary = primary;
     }
 
+  public Category() {
+  }
 }
