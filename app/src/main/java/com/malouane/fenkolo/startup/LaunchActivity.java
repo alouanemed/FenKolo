@@ -31,7 +31,7 @@ public class LaunchActivity extends AppCompatActivity {
       ViewBindingAdapters.showLongMessage(getWindow().getDecorView(), error,
           new BaseTransientBottomBar.BaseCallback<Snackbar>() {
             @Override public void onDismissed(Snackbar transientBottomBar, int event) {
-              //LaunchActivity.this.finish();
+              LaunchActivity.this.finish();
             }
           });
     });

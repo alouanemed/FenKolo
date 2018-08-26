@@ -34,13 +34,13 @@ public class CategoriesListFragment extends Fragment
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     AndroidSupportInjection.inject(this);
+    viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesListViewModel.class);
   }
 
   @Override public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
     binder = DataBindingUtil.inflate(inflater, R.layout.fragment_restaurent_list, container, false);
-    viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesListViewModel.class);
     binder.setViewModel(viewModel);
     binder.setVenueCallbacks(this);
     return binder.getRoot();

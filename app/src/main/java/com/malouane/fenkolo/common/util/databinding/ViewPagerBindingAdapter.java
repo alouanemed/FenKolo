@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import com.malouane.fenkolo.domain.entity.VenueType;
 import com.malouane.fenkolo.features.categories.CategoriesPagerAdapter;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +26,8 @@ public class ViewPagerBindingAdapter {
   }
 
   @BindingAdapter({ "venueTypeAdapter" })
-  public static void setVenueTypeAdapter(@NotNull ViewPager viewPager, @Nullable List items) {
+  public static void setVenueTypeAdapter(@NotNull ViewPager viewPager,
+      @Nullable List<VenueType> items) {
     if (items != null) {
       FragmentManager fm = ((FragmentActivity) viewPager.getContext()).getSupportFragmentManager();
       viewPager.setAdapter((PagerAdapter) (new CategoriesPagerAdapter(fm, items)));
