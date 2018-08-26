@@ -11,9 +11,8 @@ import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.FragmentRestaurentListBinding;
 import com.malouane.fenkolo.di.ViewModelFactory;
-import dagger.android.AndroidInjection;
+import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
-import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
 
 public class CategoriesListFragment extends Fragment
@@ -22,7 +21,7 @@ public class CategoriesListFragment extends Fragment
   @Inject ViewModelFactory viewModelFactory;
   @Inject AppNavigator navigator;
   CategoriesListViewModel viewModel;
-  private FragmentRestaurentListBinding binder;
+  FragmentRestaurentListBinding binder;
 
   public static CategoriesListFragment newInstance(String type) {
     CategoriesListFragment fragment = new CategoriesListFragment();
@@ -32,29 +31,27 @@ public class CategoriesListFragment extends Fragment
     return fragment;
   }
 
-  public void onCreate(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    AndroidInjection.inject(getActivity());
+    AndroidSupportInjection.inject(this);
   }
 
-  public View onCreateView(@NotNull LayoutInflater inflater,
-      @org.jetbrains.annotations.Nullable ViewGroup container,
-      @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+  @Override public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    super.onCreateView(inflater, container, savedInstanceState);
     binder = DataBindingUtil.inflate(inflater, R.layout.fragment_restaurent_list, container, false);
-
+    viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesListViewModel.class);
     binder.setViewModel(viewModel);
     binder.setVenueCallbacks(this);
     return binder.getRoot();
   }
 
-  public void onActivityCreated(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+  @Override public void onActivityCreated(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesListViewModel.class);
 
     Bundle bundle = this.getArguments();
     String eventType = bundle != null ? bundle.getString("type") : null;
-    if (eventType != null) {
-      Intrinsics.throwNpe();
+    if (eventType != null && viewModel != null) {
       viewModel.loadRestaurantList(eventType, false);
     }
   }
