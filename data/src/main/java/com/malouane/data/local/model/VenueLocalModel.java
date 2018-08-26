@@ -4,6 +4,7 @@ import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
 import com.malouane.data.local.CategoriesConverters;
 import com.malouane.data.local.model.venue.Category;
 import com.malouane.data.local.model.venue.LocationLocalModel;
@@ -16,23 +17,21 @@ public class VenueLocalModel {
     @PrimaryKey @NotNull
     private String id;
     private String name;
-    @Embedded
+  @Embedded(prefix = "location_")
     private LocationLocalModel locationLocalModel;
     private List<Category> categories = null;
-//    private List<Category> categories = null;
     private Boolean verified;
-    //private Stats stats;
     private Boolean hasPerk;
 
-    public VenueLocalModel(String id, String name, LocationLocalModel locationLocalModel, Boolean verified, Boolean hasPerk) {
+  public VenueLocalModel(String id, String name, LocationLocalModel locationLocalModel,
+      Boolean verified, Boolean hasPerk) {
         this.id = id;
         this.name = name;
         this.locationLocalModel = locationLocalModel;
-        this.verified = verified;
         this.hasPerk = hasPerk;
     }
 
-    public String getId() {
+  @NonNull public String getId() {
         return id;
     }
 
@@ -72,4 +71,11 @@ public class VenueLocalModel {
         this.hasPerk = hasPerk;
     }
 
+  public List<Category> getCategories() {
+    return categories;
+  }
+
+  public void setCategories(List<Category> categories) {
+    this.categories = categories;
+  }
 }

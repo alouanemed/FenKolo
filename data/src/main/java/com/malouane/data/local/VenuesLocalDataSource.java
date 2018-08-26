@@ -13,8 +13,9 @@ public class VenuesLocalDataSource {
     venueDao.insertAll(list);
   }
 
-  public Observable<List<VenueLocalModel>> findByType(int locationLatLong, String catId) {
-    return venueDao.findByType(locationLatLong, catId).toObservable();
+  public Observable<List<VenueLocalModel>> findByType(String locationLatLong, String catId) {
+    return venueDao.findByType(locationLatLong).toObservable();
+    //return venueDao.findByType(locationLatLong, catId).toObservable();
   }
 
   public void deleteByType(String type) {

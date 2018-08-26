@@ -1,10 +1,7 @@
 package com.malouane.data.local.model.venue;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-import com.squareup.moshi.Json;
-
+import android.arch.persistence.room.Ignore;
 import java.util.List;
 
 @Entity(tableName = "Location")
@@ -21,11 +18,13 @@ public class LocationLocalModel {
     private String city;
     private String state;
     private String country;
-    private List<String> formattedAddress = null;
+  @Ignore private List<String> formattedAddress = null;
+
+  public LocationLocalModel() {
+  }
 
     public LocationLocalModel(String address, String crossStreet, Double lat, Double lng,
-        Integer distance, String postalCode, String cc, String city, String state, String country,
-        List<String> formattedAddress) {
+        Integer distance, String postalCode, String cc, String city, String state, String country) {
         this.address = address;
         this.crossStreet = crossStreet;
         this.lat = lat;
@@ -36,7 +35,6 @@ public class LocationLocalModel {
         this.city = city;
         this.state = state;
         this.country = country;
-        this.formattedAddress = formattedAddress;
     }
 
     public String getAddress() {

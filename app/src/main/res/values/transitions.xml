@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="restaurant_card_transition" translatable="false">restaurant_card_transition</string>
+  <string name="restaurant_image_transition" translatable="false">restaurant_image_transition</string>
+  <string name="restaurant_name_transition" translatable="false">restaurant_name_transition</string>
+
+</resources>

@@ -10,11 +10,11 @@ import retrofit2.http.Query;
 
 interface FenKoloService {
   @GET("venues/search") @Wrapped(path = { "response", "venues" })
-  Observable<List<VenueRemoteModel>> getVenues(@Query("ll") int locationLatLong,
+  Observable<List<VenueRemoteModel>> getVenues(@Query("ll") String locationLatLong,
       @Query("categoryId") String catId, @Query("query") String query,
       @Query("radius") String radius //default : 250
   );
 
-  @GET("venues/search") @Wrapped(path = { "response", "venues" })
+  @GET("venues/categories") @Wrapped(path = { "response", "categories" })
   Observable<List<VenueTypeRemoteModel>> getVenueTypes();
 }

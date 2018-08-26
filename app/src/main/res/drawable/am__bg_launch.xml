@@ -4,9 +4,9 @@
   <item>
     <color android:color="@color/colorPrimary"/>
   </item>
-  <item>
-    <bitmap
-        android:gravity="center"
-        android:src="@drawable/ic_launcher_foreground"/>
-  </item>
+  <!--  <item>
+      <bitmap
+          android:gravity="center"
+          android:src="@drawable/ic_launcher_foreground"/>
+    </item>-->
 </layer-list>

@@ -17,15 +17,14 @@ import javax.inject.Inject;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
   @Inject ViewModelFactory viewModelFactory;
 
-  ActivityHomeBinding binder = DataBindingUtil.setContentView(this, R.layout.activity_home);
-
-  CategoriesViewModel viewModel =
-      ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel.class);
+  ActivityHomeBinding binder;
+  CategoriesViewModel viewModel;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     AndroidInjection.inject(this);
-
+    binder = DataBindingUtil.setContentView(this, R.layout.activity_home);
+    viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel.class);
     setSupportActionBar(binder.toolbar);
 
     binder.setViewModel(viewModel);

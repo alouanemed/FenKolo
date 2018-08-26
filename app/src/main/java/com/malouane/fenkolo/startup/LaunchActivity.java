@@ -16,12 +16,12 @@ public class LaunchActivity extends AppCompatActivity {
   @Inject ViewModelFactory viewModelFactory;
   @Inject AppNavigator navigator;
 
-  LaunchViewModel viewModel =
-      ViewModelProviders.of(this, viewModelFactory).get(LaunchViewModel.class);
+  LaunchViewModel viewModel;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     AndroidInjection.inject(this);
+    viewModel = ViewModelProviders.of(this, viewModelFactory).get(LaunchViewModel.class);
 
     viewModel.getResult().observe(this, o -> {
       navigator.navigateToHome(this);
@@ -34,8 +34,8 @@ public class LaunchActivity extends AppCompatActivity {
               LaunchActivity.this.finish();
             }
           });
-
-      viewModel.startup();
     });
+    viewModel.startup();
+
   }
 }

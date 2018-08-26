@@ -28,11 +28,11 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
   }
 
   @Override
-  public Observable<List<Venue>> getVenues(int locationLatLong, String catId, String query,
+  public Observable<List<Venue>> getVenues(String locationLatLong, String catId, String query,
       String radius, boolean refresh) {
     List<Venue> list = new ArrayList<Venue>();
     return venueRepository.findByType(locationLatLong, catId, query, radius, refresh)
-        .doOnError(it -> Timber.d("GET Event By Type Error" + catId))
+        .doOnError(it -> Timber.d("getVenues Error" + catId))
         .map(it -> {
           for (VenueLocalModel item : it) {
             list.add(mapper.toEntity(item));
@@ -42,9 +42,10 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
   }
 
   @Override public Observable<List<VenueType>> getVenueTypes() {
+    Timber.d("");
     List<VenueType> list = new ArrayList<VenueType>();
     return venueTypeRepository.getAllCategories()
-        .doOnError(it -> Timber.d("GET Event Type Error" + it))
+        .doOnError(it -> Timber.d("getVenueTypes Error" + it))
         .map(it -> {
           for (VenuesTypeLocalModel item : it) {
             list.add(mapper.toEntity(item));

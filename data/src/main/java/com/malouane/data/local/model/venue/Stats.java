@@ -1,8 +1,5 @@
 package com.malouane.data.local.model.venue;
 
-import android.arch.persistence.room.Entity;
-import com.squareup.moshi.Json;
-
 public class Stats {
     private Integer tipCount;
     private Integer usersCount;
@@ -41,4 +38,6 @@ public class Stats {
         this.visitsCount = visitsCount;
     }
 
+  public Stats() {
+  }
 }

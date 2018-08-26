@@ -4,11 +4,16 @@ public class CustomPair {
   private int frst;
   private boolean second;
 
-  int locationLatLong;
+  String locationLatLong;
   String catId;
   String query;
   private String id;
   private String name;
+
+  public CustomPair(String locationLatLong, String catId) {
+    this.locationLatLong = locationLatLong;
+    this.catId = catId;
+  }
 
   public int getFrst() {
     return frst;
@@ -26,7 +31,7 @@ public class CustomPair {
     this.second = second;
   }
 
-  public int getLocationLatLong() {
+  public String getLocationLatLong() {
     return locationLatLong;
   }
 
@@ -44,5 +49,25 @@ public class CustomPair {
 
   public String getName() {
     return name;
+  }
+
+  public void setLocationLatLong(String locationLatLong) {
+    this.locationLatLong = locationLatLong;
+  }
+
+  public void setCatId(String catId) {
+    this.catId = catId;
+  }
+
+  public void setQuery(String query) {
+    this.query = query;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }

@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import com.malouane.fenkolo.domain.entity.VenueType;
+import com.malouane.fenkolo.features.list.CategoriesListFragment;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,8 +18,8 @@ public class CategoriesPagerAdapter extends FragmentStatePagerAdapter {
   }
 
   @NotNull public Fragment getItem(int position) {
-    //return (Fragment)VenueListFragment.Companion.newInstance(((VenueType)this.items.get(position)).getId());
-    return null;
+    return (Fragment) CategoriesListFragment.newInstance(
+        ((VenueType) this.items.get(position)).getId());
   }
 
   public int getCount() {

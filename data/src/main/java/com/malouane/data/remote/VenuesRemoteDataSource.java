@@ -9,7 +9,8 @@ import org.jetbrains.annotations.NotNull;
 public class VenuesRemoteDataSource {
     private final FenKoloApi fenKoloApi;
 
-    public Observable<List<VenueRemoteModel>> getVenues(int locationLatLong, String catId, String query, String radius) {
+  public Observable<List<VenueRemoteModel>> getVenues(String locationLatLong, String catId,
+      String query, String radius) {
         return fenKoloApi.getVenues(locationLatLong, catId, query, radius);
     }
 

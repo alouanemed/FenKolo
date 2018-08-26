@@ -19,7 +19,7 @@ public class VenueRepository {
     this.mapper = mapper;
   }
 
-  public Observable<List<VenueLocalModel>> findByType(int locationLatLong, String catId,
+  public Observable<List<VenueLocalModel>> findByType(String locationLatLong, String catId,
       String query, String radius, Boolean refresh) {
     Observable<List<VenueLocalModel>> localList =
         localDataSource.findByType(locationLatLong, catId).filter(it -> !it.isEmpty());

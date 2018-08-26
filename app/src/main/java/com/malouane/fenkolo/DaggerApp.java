@@ -3,6 +3,7 @@ package com.malouane.fenkolo;
 import android.app.Activity;
 import android.app.Application;
 import android.support.v4.app.Fragment;
+import com.malouane.fenkolo.di.DaggerAppComponent;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -23,6 +24,6 @@ public abstract class DaggerApp extends Application
 
   @Override public void onCreate() {
     super.onCreate();
-    DaggerApplicationComponent.builder().create(this).inject(this);
+    DaggerAppComponent.builder().create(this).inject(this);
   }
 }

@@ -1,4 +1,4 @@
-package com.malouane.fenkolo.features.categories;
+package com.malouane.fenkolo.features.list;
 
 import android.app.Application;
 import android.content.Context;
@@ -7,38 +7,54 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.common.BaseAndroidViewModel;
-import com.malouane.fenkolo.domain.entity.VenueType;
-import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
+import com.malouane.fenkolo.domain.entity.Venue;
+import com.malouane.fenkolo.domain.interactor.CustomPair;
+import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
+import timber.log.Timber;
 
-public class CategoriesViewModel extends BaseAndroidViewModel {
+public class CategoriesListViewModel extends BaseAndroidViewModel {
+
   private final ObservableBoolean loading;
-  private final ObservableArrayList<VenueType> result;
+  private final ObservableArrayList<Venue> result;
   private final ObservableBoolean empty;
   private final ObservableField<String> error;
-  private VenueTypeGetAllUseCase getAllUseCase;
-  private Context context;
+  private VenueGetByTypeUseCase useCase;
 
-  public CategoriesViewModel(Context context, VenueTypeGetAllUseCase getAllUseCase) {
+  private Context context;
+  private String type;
+
+  public CategoriesListViewModel(Context context, VenueGetByTypeUseCase useCase) {
     super((Application) context.getApplicationContext());
     this.context = context;
     this.loading = new ObservableBoolean();
-    this.result = new ObservableArrayList<VenueType>();
+    this.result = new ObservableArrayList<Venue>();
     this.empty = new ObservableBoolean();
     this.error = new ObservableField<String>();
-    this.getAllUseCase = getAllUseCase;
+    this.useCase = useCase;
   }
 
-  private Disposable getAllVenueCategories() {
-    return getAllUseCase.perform(null).subscribeWith(new DisposableObserver<List<VenueType>>() {
+  public void loadRestaurantList(String type, Boolean refresh) {
+    this.type = type;
+    addDisposable(findRestaurentByType(type, refresh));
+  }
+
+  public void refresh() {
+    loadRestaurantList(type, true);
+  }
+
+  private Disposable findRestaurentByType(String type, Boolean refresh) {
+    CustomPair input = new CustomPair("40.7128,74.0060", type);
+    return useCase.perform(input).subscribeWith(new DisposableObserver<List<Venue>>() {
       @Override public void onStart() {
         loading.set(true);
+        empty.set(false);
       }
 
-      @Override public void onNext(List<VenueType> venueTypeList) {
+      @Override public void onNext(List<Venue> venueTypeList) {
         loading.set(false);
         result.clear();
         result.addAll(venueTypeList);
@@ -46,6 +62,7 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
       }
 
       @Override public void onError(Throwable e) {
+        Timber.d(e);
         loading.set(false);
         error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_unknown)
             : e.getMessage());
@@ -71,9 +88,5 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
 
   @NotNull public final ObservableField getError() {
     return this.error;
-  }
-
-  public void loadCategoriesList() {
-    addDisposable(getAllVenueCategories());
   }
 }

@@ -34,7 +34,7 @@ ext {
     okHttpVersion = '3.9.+'
     moshiVersion = '1.5.+'
     moshiLazyAdapterVersion = '2.1'
-    lifecycleVersion = '1.1.0'
+    lifecycleVersion = '1.1.1'
     roomVersion = '1.1.0-alpha2'
     constraintLayoutVersion = '1.0.+'
     androidKtxVersion = '0.1'

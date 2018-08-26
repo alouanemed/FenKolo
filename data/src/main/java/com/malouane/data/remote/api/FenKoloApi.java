@@ -50,7 +50,8 @@ public class FenKoloApi implements FenKoloService {
     }
 
     @Override
-    public Observable<List<VenueRemoteModel>> getVenues(int locationLatLong, String catId, String query, String radius) {
+    public Observable<List<VenueRemoteModel>> getVenues(String locationLatLong, String catId,
+        String query, String radius) {
         return apiService.getVenues(locationLatLong, catId, query, radius);
     }
 
