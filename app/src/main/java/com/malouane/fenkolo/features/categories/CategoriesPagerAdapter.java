@@ -18,8 +18,7 @@ public class CategoriesPagerAdapter extends FragmentStatePagerAdapter {
   }
 
   @NotNull public Fragment getItem(int position) {
-    return (Fragment) CategoriesListFragment.newInstance(
-        ((VenueType) this.items.get(position)).getId());
+    return CategoriesListFragment.newInstance((this.items.get(position)).getId());
   }
 
   public int getCount() {

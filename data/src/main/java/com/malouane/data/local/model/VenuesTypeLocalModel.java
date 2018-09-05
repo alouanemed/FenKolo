@@ -9,8 +9,11 @@ public class VenuesTypeLocalModel {
   @PrimaryKey @NonNull private String id = "";
     private String name;
 
+  public VenuesTypeLocalModel() {
+  }
     public VenuesTypeLocalModel(String id, String name) {
-
+      this.id = id;
+      this.name = name;
     }
 
     public String getId() {

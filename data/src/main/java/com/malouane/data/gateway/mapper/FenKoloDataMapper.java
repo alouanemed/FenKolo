@@ -8,12 +8,12 @@ import com.malouane.fenkolo.domain.entity.Venue;
 import com.malouane.fenkolo.domain.entity.VenueType;
 
 public class FenKoloDataMapper {
-  public final Venue toEntity(VenueLocalModel venue) {
+  public Venue toEntity(VenueLocalModel venue) {
     return new Venue(venue.getId(), venue.getName(), toEntity(venue.getLocationLocalModel()),
         venue.getVerified(), venue.getHasPerk());
   }
 
-  public final VenueType toEntity(VenuesTypeLocalModel venue) {
+  public VenueType toEntity(VenuesTypeLocalModel venue) {
     return new VenueType(venue.getId(), venue.getName());
   }
 

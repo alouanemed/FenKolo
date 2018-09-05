@@ -5,6 +5,7 @@ import com.malouane.data.remote.api.util.FourSquareRequestInter;
 import com.malouane.data.remote.api.util.MoshiConverters;
 import com.malouane.data.remote.model.VenueRemoteModel;
 import com.malouane.data.remote.model.VenueTypeRemoteModel;
+import com.serjltt.moshi.adapters.FirstElement;
 import com.serjltt.moshi.adapters.Wrapped;
 import com.squareup.moshi.Moshi;
 import io.reactivex.Observable;
@@ -34,8 +35,7 @@ public class FenKoloApi implements FenKoloService {
                 .addInterceptor(interceptor).build();
 
         Moshi moshi = new Moshi.Builder()
-                .add(Wrapped.ADAPTER_FACTORY)
-                .add(converters)
+                .add(Wrapped.ADAPTER_FACTORY).add(FirstElement.ADAPTER_FACTORY).add(converters)
                 //.add(Adapter())
                 .build();
 

@@ -42,7 +42,6 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
   }
 
   @Override public Observable<List<VenueType>> getVenueTypes() {
-    Timber.d("");
     List<VenueType> list = new ArrayList<VenueType>();
     return venueTypeRepository.getAllCategories()
         .doOnError(it -> Timber.d("getVenueTypes Error" + it))
