@@ -13,6 +13,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
+import timber.log.Timber;
 
 public class CategoriesViewModel extends BaseAndroidViewModel {
   private final ObservableBoolean loading;
@@ -41,11 +42,17 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
       @Override public void onNext(List<VenueType> venueTypeList) {
         loading.set(false);
         result.clear();
-        result.addAll(venueTypeList);
+        int i = 0;
+        for (VenueType v : venueTypeList) {
+          result.add(v);
+          i++;
+          if (i == 5) return;
+        }
         empty.set(venueTypeList.isEmpty());
       }
 
       @Override public void onError(Throwable e) {
+        Timber.d(e);
         loading.set(false);
         error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_unknown)
             : e.getMessage());

@@ -48,7 +48,6 @@ public class CategoriesListFragment extends Fragment
 
   @Override public void onActivityCreated(@org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-
     Bundle bundle = this.getArguments();
     String eventType = bundle != null ? bundle.getString("type") : null;
     if (eventType != null && viewModel != null) {

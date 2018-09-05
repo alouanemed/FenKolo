@@ -18,7 +18,8 @@ public class VenueTypeMapper {
     List<VenuesTypeLocalModel> outputList = new ArrayList<VenuesTypeLocalModel>();
 
     for (VenueTypeRemoteModel item : items) {
-      outputList.add(toLocal(item));
+      VenuesTypeLocalModel l = toLocal(item);
+      outputList.add(l);
     }
     return outputList;
   }

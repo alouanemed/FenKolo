@@ -8,7 +8,6 @@ import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
 import com.malouane.fenkolo.features.categories.CategoriesViewModel;
 import com.malouane.fenkolo.startup.LaunchViewModel;
-import kotlin.Suppress;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 

@@ -27,7 +27,7 @@ ext {
     // Libraries
     multidexVersion = '1.0.2'
     daggerVersion = '2.14.+'
-    supportLibraryVersion = '27.0.+'
+    supportLibraryVersion = '27.0.0'
     rxKotlinVersion = '2.2.+'
     rxAndroidVersion = '2.0.+'
     retrofitVersion = '2.3.+'
