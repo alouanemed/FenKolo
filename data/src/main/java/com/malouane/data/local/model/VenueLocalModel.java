@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import com.malouane.data.local.CategoriesConverters;
 import com.malouane.data.local.model.venue.Category;
+import com.malouane.data.local.model.venue.HereNowLocal;
 import com.malouane.data.local.model.venue.LocationLocalModel;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
@@ -22,13 +23,16 @@ public class VenueLocalModel {
     private List<Category> categories = null;
     private Boolean verified;
     private Boolean hasPerk;
+  private HereNowLocal hereNow;
+
 
   public VenueLocalModel(String id, String name, LocationLocalModel locationLocalModel,
-      Boolean verified, Boolean hasPerk) {
+      Boolean verified, Boolean hasPerk, HereNowLocal hereNow) {
         this.id = id;
         this.name = name;
         this.locationLocalModel = locationLocalModel;
         this.hasPerk = hasPerk;
+    this.hereNow = hereNow;
     }
 
   @NonNull public String getId() {
@@ -77,5 +81,9 @@ public class VenueLocalModel {
 
   public void setCategories(List<Category> categories) {
     this.categories = categories;
+  }
+
+  public HereNowLocal getHereNow() {
+    return hereNow;
   }
 }

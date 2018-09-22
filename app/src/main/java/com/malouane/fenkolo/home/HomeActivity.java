@@ -31,7 +31,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     binder.setFabClick(this);
 
     viewModel.loadCategoriesList();
-
   }
 
   @Override public void onClick(View view) {

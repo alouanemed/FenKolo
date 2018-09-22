@@ -1,9 +1,14 @@
 package com.malouane.data.remote.model;
 
-import java.util.List;
-
-import com.malouane.data.remote.model.venue.*;
+import com.malouane.data.remote.model.venue.BeenHere;
+import com.malouane.data.remote.model.venue.Category;
+import com.malouane.data.remote.model.venue.Contact;
+import com.malouane.data.remote.model.venue.HereNowRemote;
+import com.malouane.data.remote.model.venue.LocationRemoteModel;
+import com.malouane.data.remote.model.venue.Stats;
+import com.malouane.data.remote.model.venue.VenuePage;
 import com.squareup.moshi.Json;
+import java.util.List;
 public class VenueRemoteModel {
     @Json(name = "id")
     private String id;
@@ -23,8 +28,7 @@ public class VenueRemoteModel {
     private BeenHere beenHere;
     @Json(name = "venuePage")
     private VenuePage venuePage;
-    @Json(name = "hereNow")
-    private HereNow hereNow;
+    @Json(name = "hereNow") private HereNowRemote hereNow;
     @Json(name = "referralId")
     private String referralId;
     @Json(name = "venueChains")
@@ -104,11 +108,11 @@ public class VenueRemoteModel {
         this.venuePage = venuePage;
     }
 
-    public HereNow getHereNow() {
+  public HereNowRemote getHereNow() {
         return hereNow;
     }
 
-    public void setHereNow(HereNow hereNow) {
+  public void setHereNow(HereNowRemote hereNow) {
         this.hereNow = hereNow;
     }
 

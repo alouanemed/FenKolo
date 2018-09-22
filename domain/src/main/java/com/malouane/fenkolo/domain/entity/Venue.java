@@ -8,13 +8,16 @@ public class Venue {
     private Boolean verified;
     //private Stats stats;
     private Boolean hasPerk;
+  private HereNow hereNow;
 
-    public Venue(String id, String name, Location location, Boolean verified, Boolean hasPerk) {
+  public Venue(String id, String name, Location location, Boolean verified, Boolean hasPerk,
+      HereNow hereNow) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.verified = verified;
         this.hasPerk = hasPerk;
+    this.hereNow = hereNow;
     }
 
     public String getId() {
@@ -57,4 +60,7 @@ public class Venue {
         this.hasPerk = hasPerk;
     }
 
+  public HereNow getHereNow() {
+    return hereNow;
+  }
 }

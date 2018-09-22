@@ -1,5 +1,6 @@
 package com.malouane.fenkolo.domain.entity;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Location {
@@ -13,7 +14,7 @@ public class Location {
     private String city;
     private String state;
     private String country;
-    private List<String> formattedAddress = null;
+    private List<String> formattedAddress = Collections.emptyList();
 
     public Location(String address, String crossStreet, Double lat, Double lng, Integer distance, String postalCode, String cc, String city, String state, String country, List<String> formattedAddress) {
         this.address = address;

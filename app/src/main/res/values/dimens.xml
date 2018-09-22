@@ -3,5 +3,8 @@
   <dimen name="activity_horizontal_margin">16dp</dimen>
   <dimen name="activity_vertical_margin">16dp</dimen>
   <dimen name="am__dimes_8dp">8dp</dimen>
+  <dimen name="am__dimes_4dp">4dp</dimen>
+  <dimen name="am__dimes_2dp">2dp</dimen>
   <dimen name="am__dimes_16dp">16dp</dimen>
+  <dimen name="am__space_navigate_btn">56dp</dimen>
 </resources>

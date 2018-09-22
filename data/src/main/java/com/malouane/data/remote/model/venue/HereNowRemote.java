@@ -1,11 +1,9 @@
 package com.malouane.data.remote.model.venue;
 
-import com.squareup.moshi.*;
+import com.squareup.moshi.Json;
+import java.util.List;
 
-import java.util.*;
-
-public class HereNow {
-
+public class HereNowRemote {
     @Json(name = "count")
     private Integer count;
     @Json(name = "summary")

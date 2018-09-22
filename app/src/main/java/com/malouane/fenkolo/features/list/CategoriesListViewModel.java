@@ -12,16 +12,18 @@ import com.malouane.fenkolo.domain.interactor.CustomPair;
 import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
+import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import timber.log.Timber;
 
 public class CategoriesListViewModel extends BaseAndroidViewModel {
 
-  private final ObservableBoolean loading;
-  private final ObservableArrayList<Venue> result;
-  private final ObservableBoolean empty;
-  private final ObservableField<String> error;
+  private ObservableBoolean loading;
+  private VenueMapper mapper;
+  private ObservableArrayList<VenueModel> result;
+  private ObservableBoolean empty;
+  private ObservableField<String> error;
   private VenueGetByTypeUseCase useCase;
 
   private Context context;
@@ -31,34 +33,39 @@ public class CategoriesListViewModel extends BaseAndroidViewModel {
     super((Application) context.getApplicationContext());
     this.context = context;
     this.loading = new ObservableBoolean();
-    this.result = new ObservableArrayList<Venue>();
+    this.result = new ObservableArrayList<VenueModel>();
     this.empty = new ObservableBoolean();
     this.error = new ObservableField<String>();
     this.useCase = useCase;
+    this.mapper = new VenueMapper();
   }
 
   public void loadRestaurantList(String type, Boolean refresh) {
     this.type = type;
-    addDisposable(findRestaurentByType(type, refresh));
+    addDisposable(findRestaurantsByType(type, refresh));
   }
 
   public void refresh() {
     loadRestaurantList(type, true);
   }
 
-  private Disposable findRestaurentByType(String type, Boolean refresh) {
-    CustomPair input = new CustomPair("40.7128,74.0060", type);
+  private Disposable findRestaurantsByType(String type, Boolean refresh) {
+    CustomPair input = new CustomPair("40.7128,-74.0060", type);
     return useCase.perform(input).subscribeWith(new DisposableObserver<List<Venue>>() {
       @Override public void onStart() {
         loading.set(true);
         empty.set(false);
       }
 
-      @Override public void onNext(List<Venue> venueTypeList) {
+      @Override public void onNext(List<Venue> venuesList) {
         loading.set(false);
         result.clear();
-        result.addAll(venueTypeList);
-        empty.set(venueTypeList.isEmpty());
+        List<VenueModel> outputList = new ArrayList<VenueModel>();
+        for (Venue item : venuesList) {
+          outputList.add(mapper.toLocal(item));
+        }
+        result.addAll(outputList);
+        empty.set(venuesList.isEmpty());
       }
 
       @Override public void onError(Throwable e) {

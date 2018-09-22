@@ -1,16 +1,26 @@
 package com.malouane.fenkolo.features.list;
 
-import com.malouane.fenkolo.domain.entity.Location;
-
 public class VenueModel {
   private String id;
   private String name;
-  private Location location;
+  private String location;
+  private int distance;
+  private String hereNow;
 
-  public VenueModel(String id, String name, Location location) {
+  public VenueModel(String id, String name, String location, int distance, String hereNow) {
     this.id = id;
     this.name = name;
     this.location = location;
+    this.distance = distance;
+    this.hereNow = hereNow;
+  }
+
+  public int getDistance() {
+    return distance;
+  }
+
+  public String getHereNow() {
+    return hereNow;
   }
 
   public String getId() {
@@ -29,11 +39,11 @@ public class VenueModel {
     this.name = name;
   }
 
-  public Location getLocation() {
+  public String getLocation() {
     return location;
   }
 
-  public void setLocation(Location location) {
+  public void setLocation(String location) {
     this.location = location;
   }
 }
