@@ -9,7 +9,7 @@ import com.malouane.fenkolo.startup.LaunchActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
-@Module public abstract class ActivityBuilderModule {
+@Module abstract class ActivityBuilderModule {
 
   @StartupScope @ContributesAndroidInjector(modules = StartupModule.class)
   abstract LaunchActivity launchActivity();

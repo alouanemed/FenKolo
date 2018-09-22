@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
 import com.malouane.fenkolo.features.categories.CategoriesViewModel;
+import com.malouane.fenkolo.features.list.CategoriesListViewModel;
 import com.malouane.fenkolo.startup.LaunchViewModel;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
@@ -27,6 +28,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
       return (T) new LaunchViewModel(context, typeGetAllUseCase);
     else if(modelClass == CategoriesViewModel.class)
       return (T) new CategoriesViewModel(context, typeGetAllUseCase);
+    else if (modelClass == CategoriesListViewModel.class) {
+      return (T) new CategoriesListViewModel(context, byTypeUseCase);
+    }
     return null;
   }
 }

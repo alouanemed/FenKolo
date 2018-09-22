@@ -35,7 +35,7 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
         .doOnError(it -> Timber.d("getVenues Error" + catId))
         .map(it -> {
           for (VenueLocalModel item : it) {
-            list.add(mapper.toEntity(item));
+            list.add(mapper.venueToEntity(item));
           }
           return list;
         });
@@ -47,7 +47,7 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
         .doOnError(it -> Timber.d("getVenueTypes Error" + it))
         .map(it -> {
           for (VenuesTypeLocalModel item : it) {
-            list.add(mapper.toEntity(item));
+            list.add(mapper.localVenueTypeToEntity(item));
           }
           return list;
         });
