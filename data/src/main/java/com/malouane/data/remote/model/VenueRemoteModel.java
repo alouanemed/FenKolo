@@ -1,7 +1,7 @@
 package com.malouane.data.remote.model;
 
 import com.malouane.data.remote.model.venue.BeenHere;
-import com.malouane.data.remote.model.venue.Category;
+import com.malouane.data.remote.model.venue.CategoryRemoteModel;
 import com.malouane.data.remote.model.venue.Contact;
 import com.malouane.data.remote.model.venue.HereNowRemote;
 import com.malouane.data.remote.model.venue.LocationRemoteModel;
@@ -18,8 +18,7 @@ public class VenueRemoteModel {
     private Contact contact;
     @Json(name = "location")
     private LocationRemoteModel locationRemoteModel;
-    @Json(name = "categories")
-    private List<Category> categories = null;
+    @Json(name = "categories") private List<CategoryRemoteModel> categories = null;
     @Json(name = "verified")
     private Boolean verified;
     @Json(name = "stats")
@@ -68,11 +67,11 @@ public class VenueRemoteModel {
         this.locationRemoteModel = locationRemoteModel;
     }
 
-    public List<Category> getCategories() {
+  public List<CategoryRemoteModel> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+  public void setCategories(List<CategoryRemoteModel> categories) {
         this.categories = categories;
     }
 

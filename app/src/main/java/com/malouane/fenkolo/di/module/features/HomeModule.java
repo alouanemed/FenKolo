@@ -10,7 +10,7 @@ import com.malouane.fenkolo.domain.gateway.FenKoloDataGateway;
 import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
 import com.malouane.fenkolo.features.categories.CategoriesViewModel;
-import com.malouane.fenkolo.features.list.CategoriesListViewModel;
+import com.malouane.fenkolo.features.list.RestaurantListViewModel;
 import com.malouane.fenkolo.startup.LaunchViewModel;
 import dagger.Module;
 import dagger.Provides;
@@ -38,7 +38,7 @@ import dagger.Provides;
           return (T) new CategoriesViewModel(context, venueTypeGetAllUseCase);
         }
         if (!modelClass.isAssignableFrom(CategoriesViewModel.class)) {
-          return (T) (new CategoriesListViewModel(context, venueGetByTypeUseCase));
+          return (T) (new RestaurantListViewModel(context, venueGetByTypeUseCase));
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
       }

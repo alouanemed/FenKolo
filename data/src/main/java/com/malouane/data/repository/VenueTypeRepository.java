@@ -23,8 +23,9 @@ public class VenueTypeRepository {
     Observable<List<VenuesTypeLocalModel>> localList =
         localDataSource.getAll().filter(it -> !it.isEmpty());
 
-    Observable<List<VenuesTypeLocalModel>> remoteList =
-        remoteDataSource.getAll().map(mapper::toLocal).doOnNext(localDataSource::insertAll);
+    Observable<List<VenuesTypeLocalModel>> remoteList = remoteDataSource.getAll()
+        .map(it -> mapper.toLocal(it.getCategories()))
+        .doOnNext(localDataSource::insertAll);
 
     return Observable.concat(localList, remoteList).firstElement().toObservable();
   }

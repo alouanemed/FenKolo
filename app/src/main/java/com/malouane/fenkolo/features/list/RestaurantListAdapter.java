@@ -56,6 +56,9 @@ public class RestaurantListAdapter extends RecyclerView.Adapter {
       this.itemView.setOnClickListener(it -> {
         restaurantCallback.onItemClick(it, items.get(getAdapterPosition()));
       });
+      binding.amRestaurantListItemNavigateBtn.setOnClickListener(it -> {
+        restaurantCallback.onItemClick(it, items.get(getAdapterPosition()));
+      });
     }
 
     @NotNull public final ItemRestaurentCardBinding getBinding() {

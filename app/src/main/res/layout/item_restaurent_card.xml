@@ -1,11 +1,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:targetApi="lollipop"
     >
-
   <data>
-
     <variable
         name="restaurant"
         type="com.malouane.fenkolo.features.list.VenueModel"
@@ -58,7 +55,7 @@
         android:maxLines="1"
         android:padding="@dimen/am__dimes_4dp"
         android:text="@{@string/restaurant_list_distance(restaurant.distance)}"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
@@ -129,6 +126,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/am__restaurant_list_item_container_cv"
         app:layout_constraintRight_toRightOf="parent"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:onClick=""
         />
 
   </android.support.constraint.ConstraintLayout>

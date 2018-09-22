@@ -20,16 +20,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
   ActivityHomeBinding binder;
   CategoriesViewModel viewModel;
 
-  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  @Override protected void onCreate(@Nullable Bundle bundle) {
+    super.onCreate(bundle);
     AndroidInjection.inject(this);
     binder = DataBindingUtil.setContentView(this, R.layout.activity_home);
     viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel.class);
     setSupportActionBar(binder.toolbar);
-
+    String userLatLon = "";
+    if (getIntent() != null) {
+      userLatLon = getIntent().getStringExtra("latLon");
+    }
+    binder.setUserLatLon(userLatLon);
     binder.setViewModel(viewModel);
     binder.setFabClick(this);
-
     viewModel.loadCategoriesList();
   }
 

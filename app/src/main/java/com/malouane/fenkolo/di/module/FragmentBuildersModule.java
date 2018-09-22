@@ -1,9 +1,9 @@
 package com.malouane.fenkolo.di.module;
 
-import com.malouane.fenkolo.features.list.CategoriesListFragment;
+import com.malouane.fenkolo.features.list.RestaurantListFragment;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module public abstract class FragmentBuildersModule {
-  @ContributesAndroidInjector abstract CategoriesListFragment listFragment();
+  @ContributesAndroidInjector abstract RestaurantListFragment listFragment();
 }

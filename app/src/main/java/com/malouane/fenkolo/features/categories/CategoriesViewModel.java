@@ -42,13 +42,11 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
       @Override public void onNext(List<VenueType> venueTypeList) {
         loading.set(false);
         result.clear();
-        int i = 0;
-        for (VenueType v : venueTypeList) {
-          result.add(v);
-          i++;
-          if (i == 5) return;
-        }
         empty.set(venueTypeList.isEmpty());
+
+        for (VenueType v : venueTypeList) {
+          if (v.getName().contains("Restaurant")) result.add(v);
+        }
       }
 
       @Override public void onError(Throwable e) {

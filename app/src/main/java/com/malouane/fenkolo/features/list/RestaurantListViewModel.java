@@ -17,7 +17,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import timber.log.Timber;
 
-public class CategoriesListViewModel extends BaseAndroidViewModel {
+public class RestaurantListViewModel extends BaseAndroidViewModel {
 
   private ObservableBoolean loading;
   private VenueMapper mapper;
@@ -28,8 +28,9 @@ public class CategoriesListViewModel extends BaseAndroidViewModel {
 
   private Context context;
   private String type;
+  private String userLatLon;
 
-  public CategoriesListViewModel(Context context, VenueGetByTypeUseCase useCase) {
+  public RestaurantListViewModel(Context context, VenueGetByTypeUseCase useCase) {
     super((Application) context.getApplicationContext());
     this.context = context;
     this.loading = new ObservableBoolean();
@@ -40,17 +41,18 @@ public class CategoriesListViewModel extends BaseAndroidViewModel {
     this.mapper = new VenueMapper();
   }
 
-  public void loadRestaurantList(String type, Boolean refresh) {
+  public void loadRestaurantList(String userLatLon, String type, Boolean refresh) {
     this.type = type;
+    this.userLatLon = userLatLon;
     addDisposable(findRestaurantsByType(type, refresh));
   }
 
   public void refresh() {
-    loadRestaurantList(type, true);
+    loadRestaurantList(userLatLon, type, true);
   }
 
   private Disposable findRestaurantsByType(String type, Boolean refresh) {
-    CustomPair input = new CustomPair("40.7128,-74.0060", type);
+    CustomPair input = new CustomPair(userLatLon, type);//"40.7128,-74.0060"
     return useCase.perform(input).subscribeWith(new DisposableObserver<List<Venue>>() {
       @Override public void onStart() {
         loading.set(true);
