@@ -5,7 +5,7 @@ import com.malouane.data.remote.api.util.FourSquareRequestInter;
 import com.malouane.data.remote.api.util.MoshiConverters;
 import com.malouane.data.remote.model.VenueRemoteModel;
 import com.malouane.data.remote.model.VenueTypeRemoteModel;
-import com.serjltt.moshi.adapters.FirstElement;
+import com.serjltt.moshi.adapters.ElementAt;
 import com.serjltt.moshi.adapters.Wrapped;
 import com.squareup.moshi.Moshi;
 import io.reactivex.Observable;
@@ -18,7 +18,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class FenKoloApi implements FenKoloService {
-    FenKoloService apiService;
+  private FenKoloService apiService;
 
     public FenKoloApi() {
 
@@ -34,9 +34,9 @@ public class FenKoloApi implements FenKoloService {
                 .addInterceptor(loggingInterceptor)
                 .addInterceptor(interceptor).build();
 
-        Moshi moshi = new Moshi.Builder()
-                .add(Wrapped.ADAPTER_FACTORY).add(FirstElement.ADAPTER_FACTORY).add(converters)
-                //.add(Adapter())
+        Moshi moshi = new Moshi.Builder().add(Wrapped.ADAPTER_FACTORY)
+            .add(ElementAt.ADAPTER_FACTORY)
+            .add(converters)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -52,11 +52,10 @@ public class FenKoloApi implements FenKoloService {
     @Override
     public Observable<List<VenueRemoteModel>> getVenues(String locationLatLong, String catId,
         String query, String radius) {
-      return apiService.getVenues(locationLatLong, catId, query, "250");
+      return apiService.getVenues(locationLatLong, catId, query, "450");
     }
 
-    @Override
-    public Observable<List<VenueTypeRemoteModel>> getVenueTypes() {
+    @Override public Observable<VenueTypeRemoteModel> getVenueTypes() {
         return apiService.getVenueTypes();
     }
 

@@ -1,8 +1,8 @@
 package com.malouane.data.remote.model.venue;
 
-import com.squareup.moshi.*;
+import com.squareup.moshi.Json;
 
-public class Category {
+public class CategoryRemoteModel {
 
     @Json(name = "id")
     private String id;

@@ -25,12 +25,13 @@ public class ViewPagerBindingAdapter {
     viewPager.setPageMargin((int) margin);
   }
 
-  @BindingAdapter({ "venueTypeAdapter" })
+  @BindingAdapter(value = { "venueTypeAdapter", "userLatLon" })
   public static void setVenueTypeAdapter(@NotNull ViewPager viewPager,
-      @Nullable List<VenueType> items) {
+      @Nullable List<VenueType> items, @Nullable String userLatLon) {
+
     if (items != null) {
       FragmentManager fm = ((FragmentActivity) viewPager.getContext()).getSupportFragmentManager();
-      viewPager.setAdapter((PagerAdapter) (new CategoriesPagerAdapter(fm, items)));
+      viewPager.setAdapter((PagerAdapter) (new CategoriesPagerAdapter(fm, items, userLatLon)));
     }
   }
 }

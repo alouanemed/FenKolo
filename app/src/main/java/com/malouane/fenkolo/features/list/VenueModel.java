@@ -6,13 +6,18 @@ public class VenueModel {
   private String location;
   private int distance;
   private String hereNow;
+  private double lat;
+  private double lon;
 
-  public VenueModel(String id, String name, String location, int distance, String hereNow) {
+  public VenueModel(String id, String name, String location, int distance, String hereNow,
+      double lat, double lon) {
     this.id = id;
     this.name = name;
     this.location = location;
     this.distance = distance;
     this.hereNow = hereNow;
+    this.lat = lat;
+    this.lon = lon;
   }
 
   public int getDistance() {
@@ -45,5 +50,13 @@ public class VenueModel {
 
   public void setLocation(String location) {
     this.location = location;
+  }
+
+  public double getLon() {
+    return lon;
+  }
+
+  public double getLat() {
+    return lat;
   }
 }

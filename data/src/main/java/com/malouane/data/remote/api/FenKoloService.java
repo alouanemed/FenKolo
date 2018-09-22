@@ -2,6 +2,7 @@ package com.malouane.data.remote.api;
 
 import com.malouane.data.remote.model.VenueRemoteModel;
 import com.malouane.data.remote.model.VenueTypeRemoteModel;
+import com.serjltt.moshi.adapters.ElementAt;
 import com.serjltt.moshi.adapters.Wrapped;
 import io.reactivex.Observable;
 import java.util.List;
@@ -15,6 +16,6 @@ interface FenKoloService {
       @Query("radius") String radius //default : 250
   );
 
-  @GET("venues/categories") @Wrapped(path = { "response", "categories" })
-  Observable<List<VenueTypeRemoteModel>> getVenueTypes();
+  @GET("venues/categories") @Wrapped(path = { "response", "categories" }) @ElementAt(index = 3)
+  Observable<VenueTypeRemoteModel> getVenueTypes();
 }

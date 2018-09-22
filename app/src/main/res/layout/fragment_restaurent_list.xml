@@ -1,14 +1,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.malouane.fenkolo.features.list.CategoriesListFragment"
+    tools:context="com.malouane.fenkolo.features.list.RestaurantListFragment"
     >
 
   <data>
 
     <variable
         name="viewModel"
-        type="com.malouane.fenkolo.features.list.CategoriesListViewModel"
+        type="com.malouane.fenkolo.features.list.RestaurantListViewModel"
         />
 
     <variable

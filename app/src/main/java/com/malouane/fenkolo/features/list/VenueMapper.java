@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 class VenueMapper {
   VenueModel toLocal(@NotNull Venue venue) {
     return new VenueModel(venue.getId(), venue.getName(), formatLocation(venue),
-        venue.getLocation().getDistance(), venue.getHereNow().getSummary());
+        venue.getLocation().getDistance(), venue.getHereNow().getSummary(),
+        venue.getLocation().getLat(), venue.getLocation().getLng());
   }
 
   private String formatLocation(@NotNull Venue venue) {

@@ -9,6 +9,10 @@
         name="viewModel"
         type="com.malouane.fenkolo.features.categories.CategoriesViewModel"
         />
+    <variable
+        name="userLatLon"
+        type="String"
+        />
 
     <variable
         name="fabClick"
@@ -59,6 +63,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:venueTypeAdapter="@{viewModel.result}"
+        app:userLatLon="@{userLatLon}"
         />
 
     <ProgressBar
