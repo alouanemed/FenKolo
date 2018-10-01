@@ -6,6 +6,7 @@ import com.malouane.data.local.model.VenuesTypeLocalModel;
 import com.malouane.data.repository.VenueRepository;
 import com.malouane.data.repository.VenueTypeRepository;
 import com.malouane.fenkolo.domain.entity.Venue;
+import com.malouane.fenkolo.domain.entity.VenueDetails;
 import com.malouane.fenkolo.domain.entity.VenueType;
 import com.malouane.fenkolo.domain.gateway.FenKoloDataGateway;
 import io.reactivex.Observable;
@@ -50,6 +51,14 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
             list.add(mapper.localVenueTypeToEntity(item));
           }
           return list;
+        });
+  }
+
+  @Override public Observable<VenueDetails> getVenueDetails(String id, boolean refresh) {
+    return venueRepository.getVenueDetailsOf(id, refresh)
+        .doOnError(it -> Timber.d("getVenueDetailsOf Error" + it))
+        .map(it -> {
+          return mapper.venueDetailsToEntity(it);
         });
   }
 }

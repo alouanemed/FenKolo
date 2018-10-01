@@ -1,6 +1,7 @@
 package com.malouane.data.repository;
 
 import com.malouane.data.local.VenuesLocalDataSource;
+import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
 import com.malouane.data.remote.VenuesRemoteDataSource;
 import com.malouane.data.repository.mapper.VenueMapper;
@@ -34,8 +35,14 @@ public class VenueRepository {
         .flatMap(it -> Observable.concat(localList, remoteList).firstElement().toObservable());
   }
 
-  public Observable<VenueLocalModel> getById(int id) {
-    Observable<VenueLocalModel> local = localDataSource.getById(id);
-    return null;
+  public Observable<VenueDetailsLocalModel> getVenueDetailsOf(String id, Boolean refresh) {
+    Observable<VenueDetailsLocalModel> localList =
+        localDataSource.getById(id).filter(it -> !(it == null));
+
+    Observable<VenueDetailsLocalModel> remoteList = remoteDataSource.
+        getVenueDetailsOf(id).map(mapper::toLocal).doOnNext(localDataSource::insertDetails);
+
+    return Observable.just(refresh)
+        .flatMap(it -> Observable.concat(localList, remoteList).firstElement().toObservable());
   }
 }

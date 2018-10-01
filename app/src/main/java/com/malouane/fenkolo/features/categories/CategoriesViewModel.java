@@ -43,10 +43,7 @@ public class CategoriesViewModel extends BaseAndroidViewModel {
         loading.set(false);
         result.clear();
         empty.set(venueTypeList.isEmpty());
-
-        for (VenueType v : venueTypeList) {
-          if (v.getName().contains("Restaurant")) result.add(v);
-        }
+        result.addAll(venueTypeList);
       }
 
       @Override public void onError(Throwable e) {

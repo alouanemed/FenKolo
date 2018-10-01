@@ -1,7 +1,7 @@
 package com.malouane.fenkolo.domain.interactor;
 
 public class CustomPair {
-  private int frst;
+  private int first;
   private boolean second;
 
   String locationLatLong;
@@ -10,17 +10,21 @@ public class CustomPair {
   private String id;
   private String name;
 
+  public CustomPair(String id
+  ) {
+  this.id = id;
+  }
   public CustomPair(String locationLatLong, String catId) {
     this.locationLatLong = locationLatLong;
     this.catId = catId;
   }
 
-  public int getFrst() {
-    return frst;
+  public int getFirst() {
+    return first;
   }
 
-  public void setFrst(int frst) {
-    this.frst = frst;
+  public void setFirst(int first) {
+    this.first = first;
   }
 
   public boolean isSecond() {

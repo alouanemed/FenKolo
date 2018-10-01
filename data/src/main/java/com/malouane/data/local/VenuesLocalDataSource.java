@@ -1,6 +1,7 @@
 package com.malouane.data.local;
 
 import com.malouane.data.local.dao.VenueDao;
+import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
 import io.reactivex.Observable;
 import java.util.List;
@@ -22,12 +23,16 @@ public class VenuesLocalDataSource {
     venueDao.deleteByType(type);
   }
 
-  public Observable<VenueLocalModel> getById(int id) {
+  public Observable<VenueDetailsLocalModel> getById(String id) {
     return venueDao.getById(id).toObservable();
   }
 
   public void insert(VenueLocalModel venue) {
     venueDao.insert(venue);
+  }
+
+  public void insertDetails(VenueDetailsLocalModel venue) {
+    venueDao.insertVenueDetails(venue);
   }
 
   public VenuesLocalDataSource(@NotNull VenueDao venueDao) {
