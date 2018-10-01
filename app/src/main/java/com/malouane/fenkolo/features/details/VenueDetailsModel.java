@@ -7,6 +7,7 @@ public class VenueDetailsModel {
   private String name;
   private String rating;
   private String photo;
+  private String price;
   private Location location;
 
   public VenueDetailsModel(String id, String name, String rating, String photo, Location location) {

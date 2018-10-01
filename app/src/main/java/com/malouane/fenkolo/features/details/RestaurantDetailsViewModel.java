@@ -2,7 +2,6 @@ package com.malouane.fenkolo.features.details;
 
 import android.app.Application;
 import android.content.Context;
-import android.databinding.ObservableArrayList;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import com.malouane.fenkolo.R;
@@ -10,8 +9,6 @@ import com.malouane.fenkolo.common.BaseAndroidViewModel;
 import com.malouane.fenkolo.domain.entity.VenueDetails;
 import com.malouane.fenkolo.domain.interactor.CustomPair;
 import com.malouane.fenkolo.domain.interactor.VenueGetDetailsUseCase;
-import com.malouane.fenkolo.features.list.VenueMapper;
-import com.malouane.fenkolo.features.list.VenueModel;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +18,7 @@ public class RestaurantDetailsViewModel extends BaseAndroidViewModel {
 
   private ObservableBoolean loading;
   private VenueDetailsMapper mapper;
-  private ObservableArrayList<VenueDetailsModel> venueDetails;
+  private ObservableField<VenueDetailsModel> venueDetails;
   private ObservableBoolean empty;
   private ObservableField<String> error;
   private VenueGetDetailsUseCase useCase;
@@ -39,7 +36,7 @@ public class RestaurantDetailsViewModel extends BaseAndroidViewModel {
     this.mapper = new VenueDetailsMapper();
   }
 
-  public void loadRestaurantDetails(String id, Boolean refresh) {
+  void loadRestaurantDetails(String id, Boolean refresh) {
     this.id = id;
     addDisposable(getRestaurantDetails(id, refresh));
   }
@@ -58,8 +55,8 @@ public class RestaurantDetailsViewModel extends BaseAndroidViewModel {
 
       @Override public void onNext(VenueDetails v) {
         loading.set(false);
-        venueDetails = mapper.toLocal(v);
-        empty.set(v == null);
+        venueDetails.set(mapper.toLocal(v));
+        empty.set(venueDetails.get() == null);
       }
 
       @Override public void onError(Throwable e) {
@@ -87,7 +84,7 @@ public class RestaurantDetailsViewModel extends BaseAndroidViewModel {
     return this.error;
   }
 
-  public ObservableArrayList<VenueDetailsModel> getVenueDetails() {
+  public ObservableField<VenueDetailsModel> getVenueDetails() {
     return venueDetails;
   }
 }

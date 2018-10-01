@@ -1,10 +1,8 @@
 package com.malouane.data.repository.mapper;
 
-import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
 import com.malouane.data.local.model.venue.HereNowLocal;
 import com.malouane.data.local.model.venue.LocationLocalModel;
-import com.malouane.data.remote.model.VenueDetailsRemoteModel;
 import com.malouane.data.remote.model.VenueRemoteModel;
 import com.malouane.data.remote.model.venue.HereNowRemote;
 import com.malouane.data.remote.model.venue.LocationRemoteModel;
@@ -15,14 +13,7 @@ import org.jetbrains.annotations.NotNull;
 //**
 /* Map remote entities to local one
  */
-public class VenueMapper {
-
-  public VenueDetailsLocalModel toLocal(@NotNull VenueDetailsRemoteModel venue) {
-    return new VenueDetailsLocalModel(venue.getId(), venue.getName(),
-        remoteLocationTolocal(venue.getLocation()), venue.getRating(),
-        venue.getBestPhoto().getPhotoURl());
-  }
-
+public class VenueDetailsMapper {
   public VenueLocalModel toLocal(@NotNull VenueRemoteModel venue) {
     return new VenueLocalModel(venue.getId(), venue.getName(),
         remoteLocationTolocal(venue.getLocationRemoteModel()), venue.getVerified(),

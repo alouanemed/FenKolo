@@ -8,12 +8,13 @@ import android.content.Context;
 import com.malouane.data.local.DateConverters;
 import com.malouane.data.local.dao.VenueDao;
 import com.malouane.data.local.dao.VenueTypeDao;
+import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
 import com.malouane.data.local.model.VenuesTypeLocalModel;
 import org.jetbrains.annotations.NotNull;
 
 @Database(entities = {
-    VenueLocalModel.class, VenuesTypeLocalModel.class
+    VenueLocalModel.class, VenuesTypeLocalModel.class, VenueDetailsLocalModel.class
 }, version = 1, exportSchema = false) @TypeConverters(DateConverters.class)
 public abstract class DiskRoomDatabase extends RoomDatabase {
 

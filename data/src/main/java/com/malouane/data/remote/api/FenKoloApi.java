@@ -3,6 +3,7 @@ package com.malouane.data.remote.api;
 import com.malouane.data.BuildConfig;
 import com.malouane.data.remote.api.util.FourSquareRequestInter;
 import com.malouane.data.remote.api.util.MoshiConverters;
+import com.malouane.data.remote.model.VenueDetailsRemoteModel;
 import com.malouane.data.remote.model.VenueRemoteModel;
 import com.malouane.data.remote.model.VenueTypeRemoteModel;
 import com.serjltt.moshi.adapters.ElementAt;
@@ -59,8 +60,7 @@ public class FenKoloApi implements FenKoloService {
         return apiService.getVenueTypes();
     }
 
-    /*@Override
-    public Observable<VenueTypeRemoteModel> getVenueById(int id) {
+  @Override public Observable<VenueDetailsRemoteModel> getVenueById(String id) {
         return apiService.getVenueById(id);
-    }*/
+  }
 }

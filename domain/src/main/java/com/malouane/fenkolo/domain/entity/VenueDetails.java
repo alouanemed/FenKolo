@@ -3,11 +3,11 @@ package com.malouane.fenkolo.domain.entity;
 public class VenueDetails {
   private String id;
   private String name;
-  private String rating;
+  private Double rating;
   private String photo;
   private Location location;
 
-  public VenueDetails(String id, String name, String rating, String photo, Location location) {
+  public VenueDetails(String id, String name, Double rating, String photo, Location location) {
     this.id = id;
     this.name = name;
     this.rating = rating;
@@ -23,7 +23,7 @@ public class VenueDetails {
     return name;
   }
 
-  public String getRating() {
+  public Double getRating() {
     return rating;
   }
 

@@ -1,6 +1,7 @@
 package com.malouane.data.remote;
 
 import com.malouane.data.remote.api.FenKoloApi;
+import com.malouane.data.remote.model.VenueDetailsRemoteModel;
 import com.malouane.data.remote.model.VenueRemoteModel;
 import io.reactivex.Observable;
 import java.util.List;
@@ -14,9 +15,9 @@ public class VenuesRemoteDataSource {
         return fenKoloApi.getVenues(locationLatLong, catId, query, radius);
     }
 
-/*    public Observable<VenueRemoteModel> getById(intid) {
+  public Observable<VenueDetailsRemoteModel> getVenueDetailsOf(String id) {
         return fenKoloApi.getVenueById(id);
-    }*/
+  }
 
     public VenuesRemoteDataSource(@NotNull FenKoloApi fenKoloApi) {
         this.fenKoloApi = fenKoloApi;

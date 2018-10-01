@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
 import io.reactivex.Maybe;
 import java.util.List;
@@ -20,7 +21,11 @@ import java.util.List;
   //TODO query list
   @Query("DELETE FROM Venue WHERE categories = :catId") void deleteByType(String catId);
 
-  @Query("SELECT * FROM Venue WHERE id = :id") Maybe<VenueLocalModel> getById(int id);
+  @Query("SELECT * FROM VenueDetails WHERE id = :id") Maybe<VenueDetailsLocalModel> getById(
+      String id);
 
   @Insert(onConflict = OnConflictStrategy.REPLACE) void insert(VenueLocalModel venue);
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE) void insertVenueDetails(
+      VenueDetailsLocalModel venue);
 }

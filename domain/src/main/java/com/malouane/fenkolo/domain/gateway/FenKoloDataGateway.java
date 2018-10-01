@@ -12,5 +12,5 @@ public interface FenKoloDataGateway {
 
     Observable<List<VenueType>> getVenueTypes();
 
-    Observable<VenueDetails> getVenueDetails(String id);
+  Observable<VenueDetails> getVenueDetails(String id, boolean refresh);
 }
