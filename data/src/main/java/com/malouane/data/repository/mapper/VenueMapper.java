@@ -20,7 +20,11 @@ public class VenueMapper {
   public VenueDetailsLocalModel toLocal(@NotNull VenueDetailsRemoteModel venue) {
     return new VenueDetailsLocalModel(venue.getId(), venue.getName(),
         remoteLocationTolocal(venue.getLocation()), venue.getRating(),
-        venue.getBestPhoto().getPhotoURl());
+        venue.getBestPhoto().getPhotoURl(), formatPrice(venue), "rating");
+  }
+
+  private String formatPrice(@NotNull VenueDetailsRemoteModel venue) {
+    return venue.getPrice().getCurrency() + " " + venue.getPrice().getMessage();
   }
 
   public VenueLocalModel toLocal(@NotNull VenueRemoteModel venue) {

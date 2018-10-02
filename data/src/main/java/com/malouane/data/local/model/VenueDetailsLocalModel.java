@@ -13,14 +13,27 @@ import org.jetbrains.annotations.NotNull;
   @Embedded(prefix = "location_") private LocationLocalModel locationLocalModel;
   private Double rating;
   private String photo;
+  private String price;
+  private String ratingText;
 
   public VenueDetailsLocalModel(@NotNull String id, String name,
-      LocationLocalModel locationLocalModel, Double rating, String photo) {
+      LocationLocalModel locationLocalModel, Double rating, String photo, String price,
+      String ratingText) {
     this.id = id;
     this.name = name;
     this.locationLocalModel = locationLocalModel;
     this.rating = rating;
     this.photo = photo;
+    this.price = price;
+    this.ratingText = ratingText;
+  }
+
+  public String getPrice() {
+    return price;
+  }
+
+  public String getRatingText() {
+    return ratingText;
   }
 
   @NonNull public String getId() {

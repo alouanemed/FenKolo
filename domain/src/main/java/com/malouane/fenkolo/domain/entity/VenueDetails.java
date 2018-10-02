@@ -4,15 +4,20 @@ public class VenueDetails {
   private String id;
   private String name;
   private Double rating;
+  private String ratingText;
   private String photo;
   private Location location;
+  private String price;
 
-  public VenueDetails(String id, String name, Double rating, String photo, Location location) {
+  public VenueDetails(String id, String name, Double rating, String photo, Location location,
+      String ratingText, String price) {
     this.id = id;
     this.name = name;
     this.rating = rating;
     this.photo = photo;
     this.location = location;
+    this.ratingText = ratingText;
+    this.price = price;
   }
 
   public String getId() {
@@ -33,5 +38,13 @@ public class VenueDetails {
 
   public Location getLocation() {
     return location;
+  }
+
+  public String getRatingText() {
+    return ratingText;
+  }
+
+  public String getPrice() {
+    return price;
   }
 }
