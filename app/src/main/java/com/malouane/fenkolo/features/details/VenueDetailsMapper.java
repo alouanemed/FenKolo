@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
  */
 class VenueDetailsMapper {
   VenueDetailsModel toLocal(@NotNull VenueDetails venue) {
-    return new VenueDetailsModel(venue.getId(), venue.getName(), venue.getRating(),
-        venue.getPhoto(), venue.getLocation());
+    return new VenueDetailsModel(venue.getId(), venue.getName(), venue.getRating(), "",
+        venue.getPhoto(), venue.getPrice(), venue.getLocation());
   }
 
   private String formatLocation(@NotNull Location location) {

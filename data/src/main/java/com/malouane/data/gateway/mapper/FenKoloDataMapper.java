@@ -22,7 +22,8 @@ public class FenKoloDataMapper {
 
   public VenueDetails venueDetailsToEntity(VenueDetailsLocalModel venue) {
     return new VenueDetails(venue.getId(), venue.getName(), venue.getRating(), venue.getPhoto(),
-        localLocationToEntity(venue.getLocationLocalModel()));
+        localLocationToEntity(venue.getLocationLocalModel()), venue.getRatingText(),
+        venue.getPrice());
   }
 
   public VenueType localVenueTypeToEntity(VenuesTypeLocalModel venue) {

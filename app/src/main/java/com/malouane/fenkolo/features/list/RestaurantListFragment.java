@@ -7,9 +7,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.FragmentRestaurentListBinding;
@@ -71,7 +75,21 @@ public class RestaurantListFragment extends Fragment
     switch (v.getId()) {
       case R.id.am__restaurant_list_item_navigate_btn:
         ShowMap(venueModel);
+      case R.id.am__restaurant_list_item_container_cv:
+        showItemDetail(v, venueModel);
     }
+  }
+
+  private void showItemDetail(@NotNull View v, VenueModel venueModel) {
+    CardView cvVenue = v.findViewById(R.id.am__restaurant_list_item_container_cv);
+    ImageView ivVenue = v.findViewById(R.id.am__restaurant_list_item_thumbnail_iv);
+    TextView tvVenue = v.findViewById(R.id.am__restaurant_list_item_name_tv);
+
+    Pair<View, String> pair1 = Pair.create(cvVenue, cvVenue.getTransitionName());
+    Pair<View, String> pair2 = Pair.create(ivVenue, ivVenue.getTransitionName());
+    Pair<View, String> pair3 = Pair.create(tvVenue, tvVenue.getTransitionName());
+
+    navigator.navigateToDetails(getActivity(), venueModel.getId(), pair1, pair2, pair3);
   }
 
   private void ShowMap(@NotNull VenueModel venueModel) {

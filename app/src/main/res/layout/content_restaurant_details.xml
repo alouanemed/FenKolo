@@ -66,7 +66,7 @@
         app:cardElevation="@dimen/design_appbar_elevation"
         app:layout_constraintRight_toRightOf="@id/card_main"
         app:layout_constraintTop_toTopOf="parent"
-        app:visible="@{!restaurantDetailsViewModel.venueDetails.price.isEmpty()}"
+        app:fadeView="@{!restaurantDetailsViewModel.venueDetails.price.isEmpty()}"
         >
 
       <TextView
@@ -106,14 +106,13 @@
         android:layout_margin="@dimen/am__dimes_8dp"
         android:elevation="@dimen/cardview_default_elevation"
         android:maxLines="1"
-        android:text="@{restaurantDetailsViewModel.venueDetails.name}"
+        android:text="@{restaurantDetailsViewModel.venueDetails.formatLocation}"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintLeft_toRightOf="@id/image_thumbnail"
         app:layout_constraintRight_toRightOf="@id/card_main"
         app:layout_constraintTop_toBottomOf="@id/text_name"
         tools:text="@tools:sample/cities"
         />
-    <!--android:rating="@{restaurantDetailsViewModel.venueDetails.rating}"-->
 
     <RatingBar
         android:id="@+id/rating_bar"
@@ -121,6 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/am__dimes_8dp"
         android:elevation="@dimen/cardview_default_elevation"
+        android:rating="@{restaurantDetailsViewModel.venueDetails.rating}"
         app:layout_constraintLeft_toRightOf="@id/image_thumbnail"
         app:layout_constraintTop_toBottomOf="@id/text_venue"
         tools:rating="3.5"
