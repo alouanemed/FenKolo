@@ -1,9 +1,14 @@
 <resources>
   <string name="app_name">FenNaklo</string>
-  <string name="am__error_unknown">Unknown error</string>
+  <string name="am__error_unknown">You are offline!\n, Please check your network connection.</string>
   <string name="am__action_retry">Retry</string>
   <string name="am__error_location">We Couldn\'t Get Your Location</string>
   <string name="empty_icon" translatable="false">¯\\_(ツ)_/¯</string>
   <string name="restaurant_list_empty">Sorry, we couldn\'t find any restaurant \n of this type</string>
   <string name="restaurant_list_distance">%d ft away</string>
+  <string name="am__permission_location"> We need your permission to use your location </string>
+  <string name="am__permission_title">Permit</string>
+  <string name="am__permission_cancel">Cancel</string>
+  <string name="am__permission_retry">Retry</string>
+  <string name="am__permission_location_title">Location</string>
 </resources>

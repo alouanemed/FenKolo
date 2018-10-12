@@ -1,6 +1,8 @@
 package com.malouane.fenkolo.common.util.databinding;
 
 import android.databinding.BindingAdapter;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -26,9 +28,14 @@ public class ViewBindingAdapters {
   }
 
   @BindingAdapter("loadUrl") public static void loadUrl(ImageView imageView, String url) {
+
     Glide.with(imageView.getContext())
         .load(url)
-        .apply(RequestOptions.noTransformation())
+        .apply(new RequestOptions()
+            .placeholder(new ColorDrawable(Color.DKGRAY))
+            .error(new ColorDrawable(Color.RED))
+            .centerCrop()
+            .fitCenter())
         .into(imageView);
   }
 

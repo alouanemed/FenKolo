@@ -33,8 +33,6 @@ import javax.inject.Singleton;
     return new VenuesRemoteDataSource(api);
   }
 
-  //ADDME Venue Details /review Remote Data source
-
   @Provides @Singleton DiskRoomDatabase provideDiskRoomDatabase(Context context) {
     return DiskRoomDatabase.newInstance(context);
   }

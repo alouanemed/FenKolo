@@ -3,7 +3,9 @@ package com.malouane.fenkolo.startup;
 import android.Manifest;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
@@ -42,7 +47,8 @@ public class LaunchActivity extends AppCompatActivity {
 
     errorDialog = new AlertDialog.Builder(this).setTitle("Location")
         .setMessage(getString(R.string.am__error_location))
-        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+        .setPositiveButton(getString(R.string.am__permission_retry),
+            (dialog, which) -> getLocation())
         .create();
 
     viewModel.getError().observe(this, error -> {
@@ -57,7 +63,10 @@ public class LaunchActivity extends AppCompatActivity {
     //viewModel.startup();
 
     fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+    getLocation();
+  }
 
+  private void getLocation() {
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       showPermissionInfoDialog();
@@ -72,6 +81,27 @@ public class LaunchActivity extends AppCompatActivity {
           errorDialog.show();
         }
       });
+
+      LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+          super.onLocationResult(locationResult);
+          Location currentLocation = locationResult.getLastLocation();
+          if (currentLocation != null) {
+            String lat = new DecimalFormat("##.##").format(currentLocation.getLatitude());
+            String lon = new DecimalFormat("##.##").format(currentLocation.getLongitude());
+            navigator.navigateToHome(LaunchActivity.this, lat + "," + lon);
+          }
+        }
+      };
+
+      LocationRequest mLocationRequest = new LocationRequest();
+      mLocationRequest.setInterval(1200000);
+      mLocationRequest.setFastestInterval(1200000);
+      mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+      fusedLocationClient.requestLocationUpdates(mLocationRequest, locationCallback,
+          Looper.myLooper());
     }
   }
 
@@ -86,14 +116,14 @@ public class LaunchActivity extends AppCompatActivity {
   }
 
   private void showPermissionInfoDialog() {
-    new AlertDialog.Builder(this).setTitle("Location")
-        .setMessage("We need your permission to use your location")
-        .setPositiveButton("Permit", (dialog, which) -> {
+    new AlertDialog.Builder(this).setTitle(getString(R.string.am__permission_location_title))
+        .setMessage(getString(R.string.am__permission_location))
+        .setPositiveButton(getString(R.string.am__permission_title), (dialog, which) -> {
           ActivityCompat.requestPermissions(this,
               new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
               PERMISSION_ACCESS_COARSE_LOCATION);
         })
-        .setNegativeButton("Cancel",
+        .setNegativeButton(getString(R.string.am__permission_cancel),
             (dialog, which) -> Log.d("MainActivity", "Aborting mission..."))
         .show();
   }

@@ -11,6 +11,6 @@ public class BestPhoto {
   @Json(name = "height") private Integer height;
 
   public String getPhotoURl() {
-    return prefix + suffix;
+    return prefix + "300x500" + suffix;
   }
 }

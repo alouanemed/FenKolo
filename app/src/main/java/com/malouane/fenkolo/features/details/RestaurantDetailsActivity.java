@@ -25,11 +25,11 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     AndroidInjection.inject(this);
+    binder = DataBindingUtil.setContentView(this, R.layout.activity_details);
+    viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantDetailsViewModel.class);
     supportPostponeEnterTransition();
     setSupportActionBar(binder.toolbar);
     Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-    binder = DataBindingUtil.setContentView(this, R.layout.activity_details);
-    viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantDetailsViewModel.class);
     binder.setRestaurantDetailsViewModel(viewModel);
 
     String eventId = getIntent().getStringExtra(AppNavigator.EXTRA_VENUE_ID);
