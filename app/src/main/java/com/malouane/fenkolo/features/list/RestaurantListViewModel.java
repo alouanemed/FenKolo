@@ -52,7 +52,7 @@ public class RestaurantListViewModel extends BaseAndroidViewModel {
   }
 
   private Disposable findRestaurantsByType(String type, Boolean refresh) {
-    CustomPair input = new CustomPair(userLatLon, type);//"40.7128,-74.0060"
+    CustomPair input = new CustomPair("40.7128,-74.0060", type);//"40.7128,-74.0060"
     return useCase.perform(input).subscribeWith(new DisposableObserver<List<Venue>>() {
       @Override public void onStart() {
         loading.set(true);

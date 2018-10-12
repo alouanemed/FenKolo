@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
+import com.malouane.fenkolo.features.details.RestaurantDetailsActivity;
 import com.malouane.fenkolo.home.HomeActivity;
 
 public class AppNavigator {
@@ -20,7 +21,7 @@ public class AppNavigator {
   }
 
   public void navigateToDetails(Activity activity, String id, Pair... sharedElements) {
-    Intent intent = new Intent(activity, HomeActivity.class);
+    Intent intent = new Intent(activity, RestaurantDetailsActivity.class);
     intent.putExtra(EXTRA_VENUE_ID, id);
 
     Bundle options =

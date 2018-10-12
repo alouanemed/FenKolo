@@ -75,8 +75,16 @@ public class RestaurantListFragment extends Fragment
     switch (v.getId()) {
       case R.id.am__restaurant_list_item_navigate_btn:
         ShowMap(venueModel);
-      case R.id.am__restaurant_list_item_container_cv:
+        break;
+      case R.id.am__restaurant_list_item_thumbnail_iv:
         showItemDetail(v, venueModel);
+        break;
+      case R.id.am__restaurant_list_item_name_tv:
+        showItemDetail(v, venueModel);
+        break;
+      case R.id.am__restaurant_list_item_container_cl:
+        showItemDetail(v, venueModel);
+        break;
     }
   }
 

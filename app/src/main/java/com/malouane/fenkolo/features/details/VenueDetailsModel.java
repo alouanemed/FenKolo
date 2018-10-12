@@ -54,8 +54,8 @@ public class VenueDetailsModel {
     this.location = location;
   }
 
-  public Double getRating() {
-    return rating;
+  public Float getRating() {
+    return rating == null ? 0 : rating.floatValue();
   }
 
   public String getId() {
@@ -78,7 +78,7 @@ public class VenueDetailsModel {
     return location;
   }
 
-  private String formatLocation() {
+  public String formatLocation() {
     String locationFormatted = "";
     if (location.getFormattedAddress() != null && !location.getFormattedAddress().isEmpty()) {
       locationFormatted = location.getFormattedAddress().get(0);

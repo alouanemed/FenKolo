@@ -10,6 +10,7 @@
   </data>
 
   <android.support.constraint.ConstraintLayout
+      android:id="@+id/am__restaurant_list_item_container_cl"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:foreground="?attr/selectableItemBackground"
@@ -44,6 +45,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/backgrounds/scenic"
+        app:loadUrl="@{restaurantDetailsViewModel.venueDetails.photo}"
         />
 
     <TextView

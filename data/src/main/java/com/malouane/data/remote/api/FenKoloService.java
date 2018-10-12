@@ -21,6 +21,6 @@ interface FenKoloService {
   @GET("venues/categories") @Wrapped(path = { "response", "categories" }) @ElementAt(index = 3)
   Observable<VenueTypeRemoteModel> getVenueTypes();
 
-  @GET("venues/{id}") @Wrapped(path = { "response", "venues" })
+  @GET("venues/{id}") @Wrapped(path = { "response", "venue" })
   Observable<VenueDetailsRemoteModel> getVenueById(@Path("id") String id);
 }

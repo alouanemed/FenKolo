@@ -2,7 +2,7 @@ ext {
 
   compiler = [java: JavaVersion.VERSION_1_8]
 
-  android = [buildTools: '28.0.2',
+  android = [buildTools: '28.0.3',
              minSdk    : 21,
              targetSdk : 28,
              compileSdk: 28]
@@ -30,7 +30,7 @@ ext {
   roomVersion = '1.1.0-alpha2'
   constraintLayoutVersion = '1.0.+'
   androidKtxVersion = '0.1'
-  glideVersion = '4.5.0'
+  glideVersion = '4.8.0'
   stethoVersion = '1.5.0'
   TimberVersion = '4.7.1'
   playServicesVersion = '11.0.4'

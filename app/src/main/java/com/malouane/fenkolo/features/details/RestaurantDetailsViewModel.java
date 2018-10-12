@@ -34,6 +34,7 @@ public class RestaurantDetailsViewModel extends BaseAndroidViewModel {
     this.error = new ObservableField<String>();
     this.useCase = useCase;
     this.mapper = new VenueDetailsMapper();
+    this.venueDetails = new ObservableField<VenueDetailsModel>();
   }
 
   void loadRestaurantDetails(String id, Boolean refresh) {
