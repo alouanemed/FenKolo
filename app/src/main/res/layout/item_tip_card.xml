@@ -1,0 +1,94 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+
+    <variable
+        name="tip"
+        type="com.malouane.fenkolo.features.details.tips.TipModel"
+        />
+  </data>
+
+  <android.support.constraint.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:clickable="true"
+      android:focusable="true"
+      android:foreground="?attr/selectableItemBackground"
+      >
+
+    <ImageView
+        android:id="@+id/am__tip_item_photo_iv"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_margin="@dimen/am__dimes_8dp"
+        android:background="@android:color/darker_gray"
+        android:elevation="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@id/am__tip_item_user_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:loadUrl="@{tip.photo}"
+        tools:src="@tools:sample/backgrounds/scenic"
+        />
+
+    <TextView
+        android:id="@+id/am__tip_item_user_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/am__dimes_8dp"
+        android:maxLines="1"
+        android:text="@{tip.userName}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names"
+        />
+
+    <TextView
+        android:id="@+id/am__tip_item_date_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/am__dimes_8dp"
+        android:maxLines="1"
+        android:text="@{tip.date}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="@id/am__tip_item_user_tv"
+        app:layout_constraintLeft_toRightOf="@id/am__tip_item_user_tv"
+        app:layout_constraintRight_toLeftOf="@+id/am__tip_item_likes_tv"
+        app:layout_constraintTop_toTopOf="@id/am__tip_item_user_tv"
+        tools:text="@tools:sample/date/ddmmyy"
+        />
+
+    <TextView
+        android:id="@+id/am__tip_item_likes_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:text="@{tip.likes}"
+        app:layout_constraintBottom_toBottomOf="@id/am__tip_item_user_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/am__tip_item_user_tv"
+        tools:text="@tools:sample/lorem"
+        />
+
+    <TextView
+        android:id="@+id/am__tip_item_content_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/am__dimes_8dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@{tip.text}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/am__tip_item_user_tv"
+        tools:text="@tools:sample/lorem/random"
+        />
+
+  </android.support.constraint.ConstraintLayout>
+
+</layout>
