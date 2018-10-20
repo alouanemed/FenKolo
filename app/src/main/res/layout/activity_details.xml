@@ -9,6 +9,10 @@
         name="restaurantDetailsViewModel"
         type="com.malouane.fenkolo.features.details.RestaurantDetailsViewModel"
         />
+    <variable
+        name="tipsViewModel"
+        type="com.malouane.fenkolo.features.details.tips.TipsViewModel"
+        />
   </data>
 
   <android.support.design.widget.CoordinatorLayout
@@ -63,6 +67,7 @@
     <include
         layout="@layout/content_restaurant_details"
         app:restaurantDetailsViewModel="@{restaurantDetailsViewModel}"
+        app:tipsViewModel="@{tipsViewModel}"
         />
 
   </android.support.design.widget.CoordinatorLayout>

@@ -45,8 +45,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/backgrounds/scenic"
-        app:loadUrl="@{restaurantDetailsViewModel.venueDetails.photo}"
         />
+
+    <!--app:loadUrl="@{restaurantDetailsViewModel.venueDetails.photo}"-->
 
     <TextView
         android:id="@+id/am__restaurant_list_item_distance_tv"

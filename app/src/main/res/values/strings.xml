@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">FenNaklo</string>
   <string name="am__error_unknown">You are offline!\n, Please check your network connection.</string>
+  <string name="am__error_server">Server Error!\n, We couldn\t connect to server at the moment.</string>
   <string name="am__action_retry">Retry</string>
   <string name="am__error_location">We Couldn\'t Get Your Location</string>
   <string name="empty_icon" translatable="false">¯\\_(ツ)_/¯</string>
@@ -12,4 +13,5 @@
   <string name="am__permission_cancel">Cancel</string>
   <string name="am__permission_retry">Retry</string>
   <string name="am__permission_location_title">Location</string>
+  <string name="am__permission_location_loading">Loading..</string>
 </resources>

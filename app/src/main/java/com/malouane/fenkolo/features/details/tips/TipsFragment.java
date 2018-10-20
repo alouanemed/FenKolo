@@ -26,6 +26,13 @@ public class TipsFragment extends Fragment
   TipsViewModel viewModel;
   FragmentTipListBinding binder;
 
+  public static TipsFragment newInstance(String venueId) {
+    TipsFragment fragment = new TipsFragment();
+    Bundle args = new Bundle();
+    args.putSerializable(ARG_REST_ID, venueId);
+    fragment.setArguments(args);
+    return fragment;
+  }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

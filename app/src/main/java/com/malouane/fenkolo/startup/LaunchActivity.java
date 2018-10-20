@@ -46,9 +46,7 @@ public class LaunchActivity extends AppCompatActivity {
     });
 
     errorDialog = new AlertDialog.Builder(this).setTitle("Location")
-        .setMessage(getString(R.string.am__error_location))
-        .setPositiveButton(getString(R.string.am__permission_retry),
-            (dialog, which) -> getLocation())
+        .setMessage(getString(R.string.am__permission_location_loading))
         .create();
 
     viewModel.getError().observe(this, error -> {
@@ -71,16 +69,17 @@ public class LaunchActivity extends AppCompatActivity {
         != PackageManager.PERMISSION_GRANTED) {
       showPermissionInfoDialog();
     } else {
-      fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+     /* fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
         if (location != null) {
-          String lat = new DecimalFormat("##.##").format(location.getLatitude());
+           String lat = new DecimalFormat("##.##").format(location.getLatitude());
           String lon = new DecimalFormat("##.##").format(location.getLongitude());
 
           navigator.navigateToHome(this, lat + "," + lon);
         } else {
-          errorDialog.show();
+           errorDialog.show();
         }
-      });
+      });*/
+      errorDialog.show();
 
       LocationCallback locationCallback = new LocationCallback() {
         @Override
@@ -88,6 +87,7 @@ public class LaunchActivity extends AppCompatActivity {
           super.onLocationResult(locationResult);
           Location currentLocation = locationResult.getLastLocation();
           if (currentLocation != null) {
+            errorDialog.dismiss();
             String lat = new DecimalFormat("##.##").format(currentLocation.getLatitude());
             String lon = new DecimalFormat("##.##").format(currentLocation.getLongitude());
             navigator.navigateToHome(LaunchActivity.this, lat + "," + lon);
@@ -96,8 +96,8 @@ public class LaunchActivity extends AppCompatActivity {
       };
 
       LocationRequest mLocationRequest = new LocationRequest();
-      mLocationRequest.setInterval(1200000);
-      mLocationRequest.setFastestInterval(1200000);
+      mLocationRequest.setInterval(12000);
+      mLocationRequest.setFastestInterval(12000);
       mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
       fusedLocationClient.requestLocationUpdates(mLocationRequest, locationCallback,
