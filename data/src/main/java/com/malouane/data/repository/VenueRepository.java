@@ -3,6 +3,7 @@ package com.malouane.data.repository;
 import com.malouane.data.local.VenuesLocalDataSource;
 import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
+import com.malouane.data.local.model.VenueTipsLocalModel;
 import com.malouane.data.remote.VenuesRemoteDataSource;
 import com.malouane.data.repository.mapper.VenueMapper;
 import io.reactivex.Observable;
@@ -43,6 +44,20 @@ public class VenueRepository {
         getVenueDetailsOf(id).map(mapper::toLocal).doOnNext(localDataSource::insertDetails);
 
     return Observable.just(refresh)
+        .flatMap(it -> Observable.concat(localList, remoteList).firstElement().toObservable());
+  }
+
+  public Observable<VenueTipsLocalModel> getVenueTipsOf(String id, Boolean refresh) {
+    Observable<List<VenueTipsLocalModel>> localList =
+        localDataSource.getTipsById(id).filter(it -> !(it == null));
+
+    Observable<List<VenueTipsLocalModel>> remoteList = remoteDataSource.
+        getVenueTipsOf(id)
+        .map(mapper::tipsToLocal)
+        .doOnNext(localDataSource::insertAllTips);
+
+    return Observable.just(refresh)
+        .doOnNext(it -> localDataSource.deleteTipById(id))
         .flatMap(it -> Observable.concat(localList, remoteList).firstElement().toObservable());
   }
 }

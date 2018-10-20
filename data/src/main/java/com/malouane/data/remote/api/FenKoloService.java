@@ -2,6 +2,7 @@ package com.malouane.data.remote.api;
 
 import com.malouane.data.remote.model.VenueDetailsRemoteModel;
 import com.malouane.data.remote.model.VenueRemoteModel;
+import com.malouane.data.remote.model.VenueTipRemoteModel;
 import com.malouane.data.remote.model.VenueTypeRemoteModel;
 import com.serjltt.moshi.adapters.ElementAt;
 import com.serjltt.moshi.adapters.Wrapped;
@@ -23,4 +24,7 @@ interface FenKoloService {
 
   @GET("venues/{id}") @Wrapped(path = { "response", "venue" })
   Observable<VenueDetailsRemoteModel> getVenueById(@Path("id") String id);
+
+  @GET("venues/{id}/tips") @Wrapped(path = { "response", "tips" }) @ElementAt(index = 1)
+  Observable<List<VenueTipRemoteModel>> getVenueTipsOf(@Path("id") String id);
 }

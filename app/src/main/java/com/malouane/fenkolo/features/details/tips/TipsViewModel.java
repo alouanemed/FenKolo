@@ -9,7 +9,7 @@ import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.common.BaseAndroidViewModel;
 import com.malouane.fenkolo.domain.entity.Venue;
 import com.malouane.fenkolo.domain.interactor.CustomPair;
-import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
+import com.malouane.fenkolo.domain.interactor.VenueGetTipsUseCase;
 import com.malouane.fenkolo.features.list.VenueModel;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
@@ -25,12 +25,12 @@ public class TipsViewModel extends BaseAndroidViewModel {
   private ObservableArrayList<TipModel> result;
   private ObservableBoolean empty;
   private ObservableField<String> error;
-  private VenueGetByTypeUseCase useCase;
+  private VenueGetTipsUseCase useCase;
 
   private Context context;
   private String venueId;
 
-  public TipsViewModel(Context context, VenueGetByTypeUseCase useCase) {
+  public TipsViewModel(Context context, VenueGetTipsUseCase useCase) {
     super((Application) context.getApplicationContext());
     this.context = context;
     this.loading = new ObservableBoolean();
