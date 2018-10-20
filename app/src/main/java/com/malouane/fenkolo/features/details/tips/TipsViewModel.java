@@ -37,7 +37,6 @@ public class TipsViewModel extends BaseAndroidViewModel {
     this.empty = new ObservableBoolean();
     this.error = new ObservableField<String>();
     this.useCase = useCase;
-    //this.mapper = new TipMapper();
   }
 
   public void loadRestaurantTips(String venueId, Boolean refresh) {

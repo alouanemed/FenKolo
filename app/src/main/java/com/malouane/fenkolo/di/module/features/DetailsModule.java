@@ -13,6 +13,8 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module public class DetailsModule {
+  //@ContributesAndroidInjector abstract TipsFragment tipsFragment();
+
 
   @VenueScope @Provides
   public VenueGetDetailsUseCase provideVenueGetDetailsUseCase(FenKoloDataGateway gateway,

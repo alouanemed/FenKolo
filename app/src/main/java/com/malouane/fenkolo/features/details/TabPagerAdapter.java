@@ -42,6 +42,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
         TipsFragment.newInstance(venueId);
         break;
     }
-    return null;
+    return new Fragment();
   }
 }
