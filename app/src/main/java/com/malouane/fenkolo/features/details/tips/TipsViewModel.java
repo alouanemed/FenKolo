@@ -41,15 +41,15 @@ public class TipsViewModel extends BaseAndroidViewModel {
     //this.mapper = new TipMapper();
   }
 
-  public void loadRestaurantList(String venueId, Boolean refresh) {
-    addDisposable(findRestaurantsByType(venueId, refresh));
+  public void loadRestaurantTips(String venueId, Boolean refresh) {
+    addDisposable(getRestaurentTips(venueId, refresh));
   }
 
   public void refresh() {
-    loadRestaurantList(venueId, true);
+    loadRestaurantTips(venueId, true);
   }
 
-  private Disposable findRestaurantsByType(String venueId, Boolean refresh) {
+  private Disposable getRestaurentTips(String venueId, Boolean refresh) {
     CustomPair input = new CustomPair(venueId);
     return useCase.perform(input).subscribeWith(new DisposableObserver<List<Venue>>() {
       @Override public void onStart() {

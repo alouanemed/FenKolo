@@ -5,6 +5,7 @@
   <string name="am__error_location">We Couldn\'t Get Your Location</string>
   <string name="empty_icon" translatable="false">¯\\_(ツ)_/¯</string>
   <string name="restaurant_list_empty">Sorry, we couldn\'t find any restaurant \n of this type</string>
+  <string name="tips_list_empty">Sorry, we couldn\'t find any tips for this restaurant</string>
   <string name="restaurant_list_distance">%d ft away</string>
   <string name="am__permission_location"> We need your permission to use your location </string>
   <string name="am__permission_title">Permit</string>
