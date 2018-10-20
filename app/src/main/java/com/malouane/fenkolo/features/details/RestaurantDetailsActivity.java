@@ -37,16 +37,17 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
     viewModel.getVenueDetails()
         .addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-      @Override public void onPropertyChanged(Observable sender, int propertyId) {
-        View decor = (ViewGroup) getWindow().getDecorView();
-        decor.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-          @Override public boolean onPreDraw() {
-            decor.getViewTreeObserver().removeOnPreDrawListener(this);
-            supportStartPostponedEnterTransition();
-            return true;
+          @Override public void onPropertyChanged(Observable sender, int propertyId) {
+            View decor = (ViewGroup) getWindow().getDecorView();
+            decor.getViewTreeObserver()
+                .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                  @Override public boolean onPreDraw() {
+                    decor.getViewTreeObserver().removeOnPreDrawListener(this);
+                    supportStartPostponedEnterTransition();
+                    return true;
+                  }
+                });
           }
         });
-      }
-        });
-    }
   }
+}

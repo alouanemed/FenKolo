@@ -10,11 +10,13 @@ import com.malouane.data.local.dao.VenueDao;
 import com.malouane.data.local.dao.VenueTypeDao;
 import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
+import com.malouane.data.local.model.VenueTipsLocalModel;
 import com.malouane.data.local.model.VenuesTypeLocalModel;
 import org.jetbrains.annotations.NotNull;
 
 @Database(entities = {
-    VenueLocalModel.class, VenuesTypeLocalModel.class, VenueDetailsLocalModel.class
+    VenueLocalModel.class, VenuesTypeLocalModel.class, VenueDetailsLocalModel.class,
+    VenueTipsLocalModel.class
 }, version = 1, exportSchema = false) @TypeConverters(DateConverters.class)
 public abstract class DiskRoomDatabase extends RoomDatabase {
 

@@ -30,10 +30,9 @@
           android:layout_height="match_parent"
           app:fadeView="@{!viewModel.loading}"
           app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-          app:restaurantAdapter="@{viewModel.result}"
-          app:restaurantCallback="@{venueCallbacks}"
           app:showLongMessage="@{viewModel.error}"
-          tools:listitem="@layout/item_restaurent_card"
+          app:tipsAdapter="@{viewModel.result}"
+          tools:listitem="@layout/item_tip_card"
           />
 
     </android.support.v4.widget.SwipeRefreshLayout>

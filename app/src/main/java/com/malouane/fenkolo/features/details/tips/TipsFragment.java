@@ -17,6 +17,7 @@ import com.malouane.fenkolo.features.list.VenueModel;
 import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
 import org.jetbrains.annotations.NotNull;
+import timber.log.Timber;
 
 public class TipsFragment extends Fragment
     implements RestaurantListAdapter.RestaurantCallback {
@@ -26,6 +27,14 @@ public class TipsFragment extends Fragment
   TipsViewModel viewModel;
   FragmentTipListBinding binder;
 
+  public static TipsFragment newInstance(String venueId) {
+    Timber.d("venueId" + venueId);
+    TipsFragment fragment = new TipsFragment();
+    Bundle args = new Bundle();
+    args.putString(ARG_REST_ID, venueId);
+    fragment.setArguments(args);
+    return fragment;
+  }
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -45,9 +54,10 @@ public class TipsFragment extends Fragment
     super.onActivityCreated(savedInstanceState);
     Bundle bundle = this.getArguments();
     String restaurantId = null;
-
+    Timber.d("restaurantId : " + getArguments());
     if (bundle != null) {
       restaurantId = bundle.getString(ARG_REST_ID);
+      Timber.d("restaurantId : " + restaurantId);
     }
 
     if (restaurantId != null && viewModel != null) {

@@ -2,11 +2,13 @@ package com.malouane.data.gateway;
 
 import com.malouane.data.gateway.mapper.FenKoloDataMapper;
 import com.malouane.data.local.model.VenueLocalModel;
+import com.malouane.data.local.model.VenueTipsLocalModel;
 import com.malouane.data.local.model.VenuesTypeLocalModel;
 import com.malouane.data.repository.VenueRepository;
 import com.malouane.data.repository.VenueTypeRepository;
 import com.malouane.fenkolo.domain.entity.Venue;
 import com.malouane.fenkolo.domain.entity.VenueDetails;
+import com.malouane.fenkolo.domain.entity.VenueTip;
 import com.malouane.fenkolo.domain.entity.VenueType;
 import com.malouane.fenkolo.domain.gateway.FenKoloDataGateway;
 import io.reactivex.Observable;
@@ -56,9 +58,21 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
 
   @Override public Observable<VenueDetails> getVenueDetails(String id, boolean refresh) {
     return venueRepository.getVenueDetailsOf(id, refresh)
-        .doOnError(it -> Timber.d("getVenueDetailsOf Error" + it))
+        .doOnError(it -> Timber.d("getVenueDetails Error" + it))
         .map(it -> {
           return mapper.venueDetailsToEntity(it);
+        });
+  }
+
+  @Override public Observable<List<VenueTip>> getVenueTips(String venueId, boolean refresh) {
+    List<VenueTip> list = new ArrayList<VenueTip>();
+    return venueRepository.getVenueTipsOf(venueId, refresh)
+        .doOnError(Timber::d)
+        .map(it -> {
+          for (VenueTipsLocalModel item : it) {
+            list.add(mapper.tipToLocal(item));
+          }
+          return list;
         });
   }
 }

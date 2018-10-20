@@ -45,7 +45,6 @@ public class LaunchViewModel extends BaseAndroidViewModel {
       }
 
       @Override public void onError(Throwable e) {
-        Timber.d(e.getMessage());
         Timber.e(e);
         error.setValue(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_unknown)
             : e.getMessage());

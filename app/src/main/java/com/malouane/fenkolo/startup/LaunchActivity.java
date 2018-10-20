@@ -1,27 +1,19 @@
 package com.malouane.fenkolo.startup;
 
 import android.Manifest;
-import android.arch.lifecycle.ViewModelProviders;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
-import com.malouane.fenkolo.common.util.databinding.ViewBindingAdapters;
 import com.malouane.fenkolo.di.ViewModelFactory;
 import dagger.android.AndroidInjection;
 import java.text.DecimalFormat;
@@ -31,34 +23,22 @@ public class LaunchActivity extends AppCompatActivity {
   @Inject ViewModelFactory viewModelFactory;
   @Inject AppNavigator navigator;
 
-  LaunchViewModel viewModel;
   private final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
   private AlertDialog errorDialog;
+  private ProgressDialog progressDialog;
   private FusedLocationProviderClient fusedLocationClient;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     AndroidInjection.inject(this);
-    viewModel = ViewModelProviders.of(this, viewModelFactory).get(LaunchViewModel.class);
 
-    viewModel.getResult().observe(this, o -> {
-
-    });
 
     errorDialog = new AlertDialog.Builder(this).setTitle("Location")
-        .setMessage(getString(R.string.am__error_location))
-        .setPositiveButton(getString(R.string.am__permission_retry),
-            (dialog, which) -> getLocation())
+        .setMessage(getString(R.string.am__permission_location_loading))
         .create();
 
-    viewModel.getError().observe(this, error -> {
-      ViewBindingAdapters.showLongMessage(getWindow().getDecorView(), error,
-          new BaseTransientBottomBar.BaseCallback<Snackbar>() {
-            @Override public void onDismissed(Snackbar transientBottomBar, int event) {
-              LaunchActivity.this.finish();
-            }
-          });
-    });
+    progressDialog = ProgressDialog.show(this, "",
+        "Loading. Please wait...", true);
 
     //viewModel.startup();
 
@@ -67,41 +47,50 @@ public class LaunchActivity extends AppCompatActivity {
   }
 
   private void getLocation() {
+    progressDialog.show();
+
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       showPermissionInfoDialog();
     } else {
       fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
         if (location != null) {
-          String lat = new DecimalFormat("##.##").format(location.getLatitude());
+           String lat = new DecimalFormat("##.##").format(location.getLatitude());
           String lon = new DecimalFormat("##.##").format(location.getLongitude());
+          progressDialog.dismiss();
 
           navigator.navigateToHome(this, lat + "," + lon);
         } else {
-          errorDialog.show();
+           errorDialog.show();
         }
+      }).addOnFailureListener(e -> {
+        e.printStackTrace();
+        progressDialog.dismiss();
+        errorDialog.show();
       });
 
-      LocationCallback locationCallback = new LocationCallback() {
+
+     /* LocationCallback locationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
           super.onLocationResult(locationResult);
           Location currentLocation = locationResult.getLastLocation();
           if (currentLocation != null) {
+            progressDialog.dismiss();
             String lat = new DecimalFormat("##.##").format(currentLocation.getLatitude());
             String lon = new DecimalFormat("##.##").format(currentLocation.getLongitude());
             navigator.navigateToHome(LaunchActivity.this, lat + "," + lon);
+            finish();
           }
         }
       };
-
       LocationRequest mLocationRequest = new LocationRequest();
-      mLocationRequest.setInterval(1200000);
-      mLocationRequest.setFastestInterval(1200000);
-      mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+      mLocationRequest.setInterval(2000);
+      mLocationRequest.setFastestInterval(2000);
+      mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
       fusedLocationClient.requestLocationUpdates(mLocationRequest, locationCallback,
-          Looper.myLooper());
+          Looper.myLooper());*/
     }
   }
 
@@ -120,7 +109,10 @@ public class LaunchActivity extends AppCompatActivity {
         .setMessage(getString(R.string.am__permission_location))
         .setPositiveButton(getString(R.string.am__permission_title), (dialog, which) -> {
           ActivityCompat.requestPermissions(this,
-              new String[] { Manifest.permission.ACCESS_COARSE_LOCATION },
+              new String[] {
+                  Manifest.permission.ACCESS_COARSE_LOCATION,
+                  Manifest.permission.ACCESS_FINE_LOCATION
+              },
               PERMISSION_ACCESS_COARSE_LOCATION);
         })
         .setNegativeButton(getString(R.string.am__permission_cancel),

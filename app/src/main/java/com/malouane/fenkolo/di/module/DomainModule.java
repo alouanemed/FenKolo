@@ -4,6 +4,7 @@ import com.malouane.fenkolo.domain.common.Schedulers;
 import com.malouane.fenkolo.domain.gateway.FenKoloDataGateway;
 import com.malouane.fenkolo.domain.interactor.VenueGetByTypeUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueGetDetailsUseCase;
+import com.malouane.fenkolo.domain.interactor.VenueGetTipsUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
 import dagger.Module;
 import dagger.Provides;
@@ -27,5 +28,10 @@ import javax.inject.Singleton;
   public VenueGetDetailsUseCase provideVenueGetDetailsUseCase(FenKoloDataGateway gateway,
       Schedulers schedulers) {
     return new VenueGetDetailsUseCase(gateway, schedulers);
+  }
+  @Provides @Singleton
+  public VenueGetTipsUseCase provideVenueGetTipsUseCase(FenKoloDataGateway gateway,
+      Schedulers schedulers) {
+    return new VenueGetTipsUseCase(gateway, schedulers);
   }
 }

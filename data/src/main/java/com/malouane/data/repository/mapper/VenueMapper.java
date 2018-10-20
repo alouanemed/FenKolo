@@ -2,10 +2,12 @@ package com.malouane.data.repository.mapper;
 
 import com.malouane.data.local.model.VenueDetailsLocalModel;
 import com.malouane.data.local.model.VenueLocalModel;
+import com.malouane.data.local.model.VenueTipsLocalModel;
 import com.malouane.data.local.model.venue.HereNowLocal;
 import com.malouane.data.local.model.venue.LocationLocalModel;
 import com.malouane.data.remote.model.VenueDetailsRemoteModel;
 import com.malouane.data.remote.model.VenueRemoteModel;
+import com.malouane.data.remote.model.VenueTipRemoteModel;
 import com.malouane.data.remote.model.venue.HereNowRemote;
 import com.malouane.data.remote.model.venue.LocationRemoteModel;
 import java.util.ArrayList;
@@ -54,4 +56,21 @@ public class VenueMapper {
   private HereNowLocal remoteHereTolocal(@NotNull HereNowRemote hereNow) {
     return new HereNowLocal(hereNow.getCount(), hereNow.getSummary());
   }
+
+  public VenueTipsLocalModel toLocal(@NotNull VenueTipRemoteModel tip) {
+    return new VenueTipsLocalModel(tip.getId(), "", tip.getCreatedAt(), tip.getText(),
+        tip.getAgreeCount(), tip.getDisagreeCount(), tip.getUser().getName(),
+        tip.getUser().getPhoto().getPhotoURl());
+  }
+
+  public List<VenueTipsLocalModel> tipsToLocal(@NotNull List<VenueTipRemoteModel> tips) {
+    List<VenueTipsLocalModel> outputList = new ArrayList<VenueTipsLocalModel>();
+
+    for (VenueTipRemoteModel item : tips) {
+      outputList.add(toLocal(item));
+    }
+
+    return outputList;
+  }
+
 }
