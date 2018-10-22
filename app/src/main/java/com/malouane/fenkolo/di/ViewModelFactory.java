@@ -10,7 +10,6 @@ import com.malouane.fenkolo.domain.interactor.VenueGetTipsUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueTypeGetAllUseCase;
 import com.malouane.fenkolo.features.categories.CategoriesViewModel;
 import com.malouane.fenkolo.features.details.RestaurantDetailsViewModel;
-import com.malouane.fenkolo.features.details.tips.TipsViewModel;
 import com.malouane.fenkolo.features.list.RestaurantListViewModel;
 import com.malouane.fenkolo.startup.LaunchViewModel;
 
@@ -41,8 +40,6 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
       return (T) new RestaurantListViewModel(context, byTypeUseCase);
     } else if (modelClass == RestaurantDetailsViewModel.class) {
       return (T) new RestaurantDetailsViewModel(context, detailsUseCase);
-    } else if (modelClass == TipsViewModel.class) {
-      return (T) new TipsViewModel(context, venueGetTipsUseCase);
     }
 
     return null;

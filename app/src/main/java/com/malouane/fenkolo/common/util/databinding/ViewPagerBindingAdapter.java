@@ -14,13 +14,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class ViewPagerBindingAdapter {
 
-  @BindingAdapter(value = { "setupWithViewPager" })
+  @BindingAdapter("viewPager")
   public static void setupWithViewPager(@NotNull TabLayout tabLayout,
       @NotNull ViewPager viewPager) {
     tabLayout.setupWithViewPager(viewPager);
   }
 
-  @BindingAdapter(value = { "pageMargin" })
+  @BindingAdapter("marginPager")
   public static void setPageMargin(@NotNull ViewPager viewPager, float margin) {
     viewPager.setPageMargin((int) margin);
   }

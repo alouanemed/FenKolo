@@ -40,15 +40,17 @@ public class TipsViewModel extends BaseAndroidViewModel {
   }
 
   public void loadRestaurantTips(String venueId, Boolean refresh) {
-    addDisposable(getRestaurentTips(venueId, refresh));
+    addDisposable(getRestaurantTips(venueId, refresh));
   }
 
   public void refresh() {
     loadRestaurantTips(venueId, true);
   }
 
-  private Disposable getRestaurentTips(String venueId, Boolean refresh) {
+  private Disposable getRestaurantTips(String venueId, Boolean refresh) {
     CustomPair input = new CustomPair(venueId);
+    Timber.d("getRestaurantTips");
+
     return useCase.perform(input).subscribeWith(new DisposableObserver<List<VenueTip>>() {
       @Override public void onStart() {
         loading.set(true);
