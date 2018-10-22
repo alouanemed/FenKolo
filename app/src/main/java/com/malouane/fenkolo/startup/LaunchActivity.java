@@ -61,7 +61,8 @@ public class LaunchActivity extends AppCompatActivity {
 
           navigator.navigateToHome(this, lat + "," + lon);
         } else {
-           errorDialog.show();
+          progressDialog.dismiss();
+          errorDialog.show();
         }
       }).addOnFailureListener(e -> {
         e.printStackTrace();

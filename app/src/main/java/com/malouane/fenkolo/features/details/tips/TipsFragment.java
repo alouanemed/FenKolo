@@ -28,7 +28,6 @@ public class TipsFragment extends Fragment
   FragmentTipListBinding binder;
 
   public static TipsFragment newInstance(String venueId) {
-    Timber.d("venueId" + venueId);
     TipsFragment fragment = new TipsFragment();
     Bundle args = new Bundle();
     args.putString(ARG_REST_ID, venueId);
@@ -46,7 +45,9 @@ public class TipsFragment extends Fragment
       Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
     binder = DataBindingUtil.inflate(inflater, R.layout.fragment_tip_list, container, false);
-    binder.setViewModel(viewModel);
+    if (viewModel != null) {
+      binder.setViewModel(viewModel);
+    }
     return binder.getRoot();
   }
 
@@ -54,7 +55,6 @@ public class TipsFragment extends Fragment
     super.onActivityCreated(savedInstanceState);
     Bundle bundle = this.getArguments();
     String restaurantId = null;
-    Timber.d("restaurantId : " + getArguments());
     if (bundle != null) {
       restaurantId = bundle.getString(ARG_REST_ID);
       Timber.d("restaurantId : " + restaurantId);

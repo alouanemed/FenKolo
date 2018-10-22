@@ -74,7 +74,7 @@ public class RestaurantListViewModel extends BaseAndroidViewModel {
         Timber.d(e);
         loading.set(false);
         error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_unknown)
-            : e.getMessage());
+            : context.getString(R.string.am__error_server));
       }
 
       @Override public void onComplete() {

@@ -144,7 +144,7 @@
         app:layout_constraintLeft_toLeftOf="@id/card_main"
         app:layout_constraintRight_toRightOf="@id/card_main"
         app:layout_constraintTop_toBottomOf="@id/rating_bar"
-        app:pageMargin="@{@dimen/activity_horizontal_margin}}"
+        app:marginPager="@{@dimen/activity_horizontal_margin}}"
         app:tabAdapter="@{restaurantDetailsViewModel.venueDetails.id}"
         >
 
@@ -152,7 +152,7 @@
           android:id="@+id/tabs"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          app:setupWithViewPager="@{viewPager}"
+          app:viewPager="@{viewPager}"
           />
 
     </android.support.v4.view.ViewPager>

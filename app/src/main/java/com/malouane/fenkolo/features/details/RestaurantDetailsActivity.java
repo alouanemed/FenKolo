@@ -1,6 +1,7 @@
 package com.malouane.fenkolo.features.details;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.os.Bundle;
@@ -49,5 +50,18 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                 });
           }
         });
+
+    viewModel.getError()
+        .addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+          @Override public void onPropertyChanged(Observable sender, int propertyId) {
+            getWindow().setSharedElementReturnTransition(null);
+            getWindow().setSharedElementReenterTransition(null);
+          }
+        });
   }
+
+  @Override public Intent getParentActivityIntent() {
+    return super.getParentActivityIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+  }
+
 }

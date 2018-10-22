@@ -36,12 +36,11 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
   public Fragment getItem(int position) {
     switch (position) {
       case 0:
-        TipsFragment.newInstance(venueId);
-        break;
+        return TipsFragment.newInstance(venueId);
       case 1:
-        TipsFragment.newInstance(venueId);
-        break;
+        return TipsFragment.newInstance(venueId);
     }
-    return new Fragment();
+
+    return null;
   }
 }
