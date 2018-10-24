@@ -1,6 +1,7 @@
 package com.malouane.fenkolo.startup;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProvider;
 import android.content.pm.PackageManager;
@@ -38,8 +39,6 @@ public class LaunchActivity extends AppCompatActivity {
         .setMessage(getString(R.string.am__permission_location_loading))
         .create();
 
-    //viewModel.startup();
-
     fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
     getLocation();
   }
@@ -50,38 +49,13 @@ public class LaunchActivity extends AppCompatActivity {
         != PackageManager.PERMISSION_GRANTED) {
       showPermissionInfoDialog();
     } else {
-
       performGetLocation();
-
-
-     /* LocationCallback locationCallback = new LocationCallback() {
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-          super.onLocationResult(locationResult);
-          Location currentLocation = locationResult.getLastLocation();
-          if (currentLocation != null) {
-            progressDialog.dismiss();
-            String lat = new DecimalFormat("##.##").format(currentLocation.getLatitude());
-            String lon = new DecimalFormat("##.##").format(currentLocation.getLongitude());
-            navigator.navigateToHome(LaunchActivity.this, lat + "," + lon);
-            finish();
-          }
-        }
-      };
-      LocationRequest mLocationRequest = new LocationRequest();
-      mLocationRequest.setInterval(2000);
-      mLocationRequest.setFastestInterval(2000);
-      mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-      fusedLocationClient.requestLocationUpdates(mLocationRequest, locationCallback,
-          Looper.myLooper());*/
     }
   }
 
-  private void performGetLocation() {
-    progressDialog = ProgressDialog.show(this, "",
-        "Loading. Please wait...", true);
-
+  @SuppressLint("MissingPermission") private void performGetLocation() {
+    progressDialog = ProgressDialog.show(this, getString(R.string.am__permission_location_title),
+        getString(R.string.am__permission_location_loading), true);
     fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
       if (location != null) {
         String lat = new DecimalFormat("##.##").format(location.getLatitude());
