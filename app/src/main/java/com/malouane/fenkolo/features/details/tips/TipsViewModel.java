@@ -37,6 +37,7 @@ public class TipsViewModel extends BaseAndroidViewModel {
     this.empty = new ObservableBoolean();
     this.error = new ObservableField<String>();
     this.useCase = useCase;
+    this.mapper = new TipMapper();
   }
 
   public void loadRestaurantTips(String venueId, Boolean refresh) {
@@ -49,7 +50,6 @@ public class TipsViewModel extends BaseAndroidViewModel {
 
   private Disposable getRestaurantTips(String venueId, Boolean refresh) {
     CustomPair input = new CustomPair(venueId);
-    Timber.d("getRestaurantTips");
 
     return useCase.perform(input).subscribeWith(new DisposableObserver<List<VenueTip>>() {
       @Override public void onStart() {
@@ -71,8 +71,9 @@ public class TipsViewModel extends BaseAndroidViewModel {
       @Override public void onError(Throwable e) {
         Timber.d(e);
         loading.set(false);
+        empty.set(true);
         error.set(e.getLocalizedMessage().isEmpty() ? context.getString(R.string.am__error_server)
-            : e.getMessage());
+            : context.getString(R.string.tips_list_empty));
       }
 
       @Override public void onComplete() {

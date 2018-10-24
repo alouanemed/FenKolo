@@ -14,4 +14,7 @@
   <string name="am__permission_retry">Retry</string>
   <string name="am__permission_location_title">Location</string>
   <string name="am__permission_location_loading">Loading..</string>
+  <string name="am__tips_list_likes_count">Likes: %s</string>
+  <string name="am__tips_list_dislikes_count">DisLikes: %s</string>
+
 </resources>

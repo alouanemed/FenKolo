@@ -8,6 +8,7 @@ import com.malouane.data.remote.VenuesRemoteDataSource;
 import com.malouane.data.repository.mapper.VenueMapper;
 import io.reactivex.Observable;
 import java.util.List;
+import timber.log.Timber;
 
 public class VenueRepository {
   private VenuesLocalDataSource localDataSource;
@@ -48,8 +49,9 @@ public class VenueRepository {
   }
 
   public Observable<List<VenueTipsLocalModel>> getVenueTipsOf(String id, Boolean refresh) {
+    Timber.d("<List<VenueTipsLocalModel>>");
     Observable<List<VenueTipsLocalModel>> localList =
-        localDataSource.getTipsById(id).filter(it -> !(it == null));
+        localDataSource.getTipsById(id).filter(it -> !it.isEmpty());
 
     Observable<List<VenueTipsLocalModel>> remoteList = remoteDataSource.
         getVenueTipsOf(id)

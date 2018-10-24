@@ -2,25 +2,27 @@ package com.malouane.fenkolo.startup;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.arch.lifecycle.ViewModelProvider;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
-import com.malouane.fenkolo.di.ViewModelFactory;
 import dagger.android.AndroidInjection;
 import java.text.DecimalFormat;
 import javax.inject.Inject;
 
 public class LaunchActivity extends AppCompatActivity {
-  @Inject ViewModelFactory viewModelFactory;
+  @Inject ViewModelProvider.Factory viewModelFactory;
   @Inject AppNavigator navigator;
 
   private final int PERMISSION_ACCESS_COARSE_LOCATION = 1;
@@ -32,13 +34,9 @@ public class LaunchActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     AndroidInjection.inject(this);
 
-
     errorDialog = new AlertDialog.Builder(this).setTitle("Location")
         .setMessage(getString(R.string.am__permission_location_loading))
         .create();
-
-    progressDialog = ProgressDialog.show(this, "",
-        "Loading. Please wait...", true);
 
     //viewModel.startup();
 
@@ -47,28 +45,13 @@ public class LaunchActivity extends AppCompatActivity {
   }
 
   private void getLocation() {
-    progressDialog.show();
 
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       showPermissionInfoDialog();
     } else {
-      fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
-        if (location != null) {
-           String lat = new DecimalFormat("##.##").format(location.getLatitude());
-          String lon = new DecimalFormat("##.##").format(location.getLongitude());
-          progressDialog.dismiss();
 
-          navigator.navigateToHome(this, lat + "," + lon);
-        } else {
-          progressDialog.dismiss();
-          errorDialog.show();
-        }
-      }).addOnFailureListener(e -> {
-        e.printStackTrace();
-        progressDialog.dismiss();
-        errorDialog.show();
-      });
+      performGetLocation();
 
 
      /* LocationCallback locationCallback = new LocationCallback() {
@@ -92,6 +75,43 @@ public class LaunchActivity extends AppCompatActivity {
 
       fusedLocationClient.requestLocationUpdates(mLocationRequest, locationCallback,
           Looper.myLooper());*/
+    }
+  }
+
+  private void performGetLocation() {
+    progressDialog = ProgressDialog.show(this, "",
+        "Loading. Please wait...", true);
+
+    fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+      if (location != null) {
+        String lat = new DecimalFormat("##.##").format(location.getLatitude());
+        String lon = new DecimalFormat("##.##").format(location.getLongitude());
+        progressDialog.dismiss();
+
+        navigator.navigateToHome(this, lat + "," + lon);
+      } else {
+        progressDialog.dismiss();
+        errorDialog.show();
+      }
+    }).addOnFailureListener(e -> {
+      e.printStackTrace();
+      progressDialog.dismiss();
+      errorDialog.show();
+    });
+  }
+
+  @Override
+  public void onRequestPermissionsResult(
+      int requestCode,
+      @NonNull String permissions[],
+      @NonNull int[] grantResults) {
+
+    if (grantResults.length > 0
+        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+      performGetLocation();
+      Toast.makeText(this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+    } else {
+      Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
     }
   }
 

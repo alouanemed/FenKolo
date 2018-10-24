@@ -16,19 +16,19 @@ import dagger.Provides;
 @Module public class StartupModule {
 
   @StartupScope @Provides
-  public VenueTypeGetAllUseCase provideVenueTypeGetAllUseCase(FenKoloDataGateway gateway,
+  public static VenueTypeGetAllUseCase provideVenueTypeGetAllUseCase(FenKoloDataGateway gateway,
       Schedulers schedulers) {
     return new VenueTypeGetAllUseCase(gateway, schedulers);
   }
 
-  @Provides public final ViewModelProvider.Factory provideViewModelFactory(Context context,
+  @Provides public static ViewModelProvider.Factory provideViewModelFactory(Context context,
       VenueTypeGetAllUseCase useCase) {
     return (ViewModelProvider.Factory) (new ViewModelProvider.Factory() {
       @NonNull @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LaunchViewModel.class)) {
           return (T) new LaunchViewModel(context, useCase);
         }
-        if (!modelClass.isAssignableFrom(CategoriesViewModel.class)) {
+        if (modelClass.isAssignableFrom(CategoriesViewModel.class)) {
           return (T) (new CategoriesViewModel(context, useCase));
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
