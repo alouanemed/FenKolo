@@ -1,5 +1,6 @@
 package com.malouane.fenkolo.features.list;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.FragmentRestaurentListBinding;
-import com.malouane.fenkolo.di.ViewModelFactory;
 import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
 import org.jetbrains.annotations.NotNull;
@@ -26,7 +26,7 @@ public class RestaurantListFragment extends Fragment
     implements RestaurantListAdapter.RestaurantCallback {
   private static final String ARG_TYPE = "type";
   private static final String ARG_LAT_LON = "latLon";
-  @Inject ViewModelFactory viewModelFactory;
+  @Inject ViewModelProvider.Factory viewModelFactory;
   @Inject AppNavigator navigator;
   RestaurantListViewModel viewModel;
   FragmentRestaurentListBinding binder;

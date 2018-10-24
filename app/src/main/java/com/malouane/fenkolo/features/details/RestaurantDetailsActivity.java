@@ -1,31 +1,29 @@
 package com.malouane.fenkolo.features.details;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.ActivityDetailsBinding;
-import com.malouane.fenkolo.di.ViewModelFactory;
-import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 import java.util.Objects;
 import javax.inject.Inject;
 
-public class RestaurantDetailsActivity extends AppCompatActivity {
-  @Inject ViewModelFactory viewModelFactory;
+public class RestaurantDetailsActivity extends DaggerAppCompatActivity {
+  @Inject ViewModelProvider.Factory viewModelFactory;
   @Inject AppNavigator navigator;
   RestaurantDetailsViewModel viewModel;
   ActivityDetailsBinding binder;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    AndroidInjection.inject(this);
     binder = DataBindingUtil.setContentView(this, R.layout.activity_details);
     viewModel = ViewModelProviders.of(this, viewModelFactory).get(RestaurantDetailsViewModel.class);
     supportPostponeEnterTransition();

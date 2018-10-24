@@ -10,25 +10,27 @@ import com.malouane.fenkolo.domain.gateway.FenKoloDataGateway;
 import com.malouane.fenkolo.domain.interactor.VenueGetDetailsUseCase;
 import com.malouane.fenkolo.domain.interactor.VenueGetTipsUseCase;
 import com.malouane.fenkolo.features.details.RestaurantDetailsViewModel;
+import com.malouane.fenkolo.features.details.tips.TipsFragment;
 import com.malouane.fenkolo.features.details.tips.TipsViewModel;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
 
-@Module public class DetailsModule {
+@Module public abstract class DetailsModule {
   @VenueScope @Provides
-  public VenueGetDetailsUseCase provideVenueGetDetailsUseCase(FenKoloDataGateway gateway,
+  public static VenueGetDetailsUseCase provideVenueGetDetailsUseCase(FenKoloDataGateway gateway,
       Schedulers schedulers) {
     return new VenueGetDetailsUseCase(gateway, schedulers);
   }
 
   @VenueScope @Provides
-  public VenueGetTipsUseCase provideVenueGetTipsUseCase(FenKoloDataGateway gateway,
+  public static VenueGetTipsUseCase provideVenueGetTipsUseCase(FenKoloDataGateway gateway,
       Schedulers schedulers) {
     return new VenueGetTipsUseCase(gateway, schedulers);
   }
 
   @VenueScope @Provides
-  public final ViewModelProvider.Factory provideViewModelFactory(Context context,
+  public static ViewModelProvider.Factory provideViewModelFactory(Context context,
       VenueGetDetailsUseCase useCase, VenueGetTipsUseCase tipsUseCase) {
     return (ViewModelProvider.Factory) (new ViewModelProvider.Factory() {
       @NonNull @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -43,4 +45,6 @@ import dagger.Provides;
       }
     });
   }
+
+  @ContributesAndroidInjector abstract TipsFragment tipsFragment();
 }

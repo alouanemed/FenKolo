@@ -1,7 +1,9 @@
 package com.malouane.fenkolo.features.details.tips;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
+import android.databinding.Observable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,18 +13,16 @@ import android.view.ViewGroup;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.FragmentTipListBinding;
-import com.malouane.fenkolo.di.ViewModelFactory;
 import com.malouane.fenkolo.features.list.RestaurantListAdapter;
 import com.malouane.fenkolo.features.list.VenueModel;
 import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
 import org.jetbrains.annotations.NotNull;
-import timber.log.Timber;
 
 public class TipsFragment extends Fragment
     implements RestaurantListAdapter.RestaurantCallback {
   private static final String ARG_REST_ID = "id";
-  @Inject ViewModelFactory viewModelFactory;
+  @Inject ViewModelProvider.Factory viewModelFactory;
   @Inject AppNavigator navigator;
   TipsViewModel viewModel;
   FragmentTipListBinding binder;
@@ -57,12 +57,20 @@ public class TipsFragment extends Fragment
     String restaurantId = null;
     if (bundle != null) {
       restaurantId = bundle.getString(ARG_REST_ID);
-      Timber.d("restaurantId : " + restaurantId);
     }
 
     if (restaurantId != null && viewModel != null) {
       viewModel.loadRestaurantTips(restaurantId, false);
     }
+
+    viewModel.getError()
+        .addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+          @Override public void onPropertyChanged(Observable sender, int propertyId) {
+            binder.viewEmpty.setVisibility(View.VISIBLE);
+            binder.listRestaurent.setVisibility(View.GONE);
+          }
+        });
+
   }
 
   @Override public void onItemClick(@NotNull View v, @NotNull VenueModel venueModel) {

@@ -1,27 +1,25 @@
 package com.malouane.fenkolo.home;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.ActivityHomeBinding;
-import com.malouane.fenkolo.di.ViewModelFactory;
 import com.malouane.fenkolo.features.categories.CategoriesViewModel;
-import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 import javax.inject.Inject;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
-  @Inject ViewModelFactory viewModelFactory;
+public class HomeActivity extends DaggerAppCompatActivity implements View.OnClickListener {
+  @Inject ViewModelProvider.Factory viewModelFactory;
 
   ActivityHomeBinding binder;
   CategoriesViewModel viewModel;
 
   @Override protected void onCreate(@Nullable Bundle bundle) {
     super.onCreate(bundle);
-    AndroidInjection.inject(this);
     binder = DataBindingUtil.setContentView(this, R.layout.activity_home);
     viewModel = ViewModelProviders.of(this, viewModelFactory).get(CategoriesViewModel.class);
     setSupportActionBar(binder.toolbar);
