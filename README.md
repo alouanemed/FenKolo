@@ -2,7 +2,7 @@
 
 (work-in-progress 👷🔧️👷‍♀️⛏)
 
-Get closest restaurnet and snacks sorted by type and curated using tips shared by people.
+Discover nearest restaurants and snacks sorted by cuisine and curated using tips shared by people all over the world.
 
 ## Android development
 
@@ -31,7 +31,6 @@ clientSecret=<insert>
 apiVersion=<insert>
 ```
 
-
 ## Contributions
 
 If you've found an error in this sample, please file an issue.
@@ -40,7 +39,7 @@ Patches are encouraged, and may be submitted by forking this project and
 submitting a pull request. Since this project is still in its very early stages,
 if your change is substantial, please raise an issue first to discuss it.
 
-Art done by YVW .
+Art done by  [YVW ]https://dribbble.com/YVW).
 
 ## License
 
