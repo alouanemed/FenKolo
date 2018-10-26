@@ -32,7 +32,7 @@ import dagger.android.ContributesAndroidInjector;
   @VenueScope @Provides
   public static ViewModelProvider.Factory provideViewModelFactory(Context context,
       VenueGetDetailsUseCase useCase, VenueGetTipsUseCase tipsUseCase) {
-    return (ViewModelProvider.Factory) (new ViewModelProvider.Factory() {
+    return (new ViewModelProvider.Factory() {
       @NonNull @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(RestaurantDetailsViewModel.class)) {
           return (T) new RestaurantDetailsViewModel(context, useCase);

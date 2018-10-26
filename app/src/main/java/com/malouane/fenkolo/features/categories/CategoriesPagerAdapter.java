@@ -30,6 +30,6 @@ public class CategoriesPagerAdapter extends FragmentStatePagerAdapter {
   }
 
   @NotNull public String getPageTitle(int position) {
-    return ((VenueType) this.items.get(position)).getName();
+    return this.items.get(position).getName();
   }
 }

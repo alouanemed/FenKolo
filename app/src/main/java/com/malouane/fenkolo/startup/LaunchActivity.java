@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -83,9 +82,9 @@ public class LaunchActivity extends AppCompatActivity {
     if (grantResults.length > 0
         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
       performGetLocation();
-      Toast.makeText(this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, getString(R.string.am__permission_granted), Toast.LENGTH_SHORT).show();
     } else {
-      Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, getString(R.string.am__permission_denied), Toast.LENGTH_SHORT).show();
     }
   }
 
@@ -111,7 +110,7 @@ public class LaunchActivity extends AppCompatActivity {
               PERMISSION_ACCESS_COARSE_LOCATION);
         })
         .setNegativeButton(getString(R.string.am__permission_cancel),
-            (dialog, which) -> Log.d("MainActivity", "Aborting mission..."))
+            (dialog, which) -> errorDialog.show())
         .show();
   }
 }

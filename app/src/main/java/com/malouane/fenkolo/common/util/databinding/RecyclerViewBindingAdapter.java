@@ -16,7 +16,7 @@ public class RecyclerViewBindingAdapter {
     if (items != null) {
       recyclerView.setHasFixedSize(true);
       recyclerView.setAdapter(
-          (RecyclerView.Adapter) (new RestaurantListAdapter(items, restaurantCallback)));
+          (new RestaurantListAdapter(items, restaurantCallback)));
     }
   }
 
@@ -26,7 +26,7 @@ public class RecyclerViewBindingAdapter {
     if (items != null) {
       recyclerView.setHasFixedSize(true);
       recyclerView.setAdapter(
-          (RecyclerView.Adapter) (new TipsAdapter(items)));
+          (new TipsAdapter(items)));
     }
   }
 }

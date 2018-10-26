@@ -23,7 +23,7 @@ import dagger.Provides;
 
   @Provides public static ViewModelProvider.Factory provideViewModelFactory(Context context,
       VenueTypeGetAllUseCase useCase) {
-    return (ViewModelProvider.Factory) (new ViewModelProvider.Factory() {
+    return (new ViewModelProvider.Factory() {
       @NonNull @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LaunchViewModel.class)) {
           return (T) new LaunchViewModel(context, useCase);
