@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.facebook.stetho.Stetho;
+import com.google.android.gms.ads.MobileAds;
+import com.malouane.data.BuildConfig;
 import dagger.android.DispatchingAndroidInjector;
 import io.reactivex.plugins.RxJavaPlugins;
 import javax.inject.Inject;
@@ -27,5 +29,7 @@ public class FenKoloApp extends DaggerApp {
     Stetho.initializeWithDefaults(this);
 
     RxJavaPlugins.setErrorHandler(Timber::e);
+
+    MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
   }
 }

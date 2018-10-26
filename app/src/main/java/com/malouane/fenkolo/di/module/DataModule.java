@@ -37,10 +37,6 @@ import javax.inject.Singleton;
     return DiskRoomDatabase.newInstance(context);
   }
 
- /* @Provides @Singleton MemoryDatabase provideMemoryDatabase(Context context) {
-    return DiskRoomDatabase.newInstance(context);
-  }*/
-
   @Provides @Singleton VenueTypeDao provideVenueTypeDao(DiskRoomDatabase disk) {
     return disk.venueTypeDao();
   }
@@ -48,8 +44,6 @@ import javax.inject.Singleton;
   @Provides @Singleton VenueDao provideVenueDao(DiskRoomDatabase disk) {
     return disk.venueDao();
   }
-
-  //ADDME Venue Details /review DAOs
 
   @Provides @Singleton VenueTypesLocalDataSource provideVenueTypesLocalDataSource(
       VenueTypeDao venueTypeDao) {
@@ -60,8 +54,6 @@ import javax.inject.Singleton;
     return new VenuesLocalDataSource(venueDao);
   }
 
-  //ADDME Venue detail/rating source
-
   @Provides @Singleton VenueTypeRepository provideVenueTypeRepository(
       VenueTypesLocalDataSource localDataSource, VenueTypeRemoteDataSource remoteDataSource) {
     return new VenueTypeRepository(localDataSource, remoteDataSource, new VenueTypeMapper());
@@ -71,8 +63,6 @@ import javax.inject.Singleton;
       VenuesRemoteDataSource remoteDataSource) {
     return new VenueRepository(localDataSource, remoteDataSource, new VenueMapper());
   }
-
-  //ADDME Venue detail/rating Repo
 
   @Provides @Singleton FenKoloDataGateway provideFenKoloDataGateway(
       VenueRepository venueRepository, VenueTypeRepository venueTypeRepository) {

@@ -7,7 +7,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.Observable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
@@ -37,7 +36,7 @@ public class RestaurantDetailsActivity extends DaggerAppCompatActivity {
     viewModel.getVenueDetails()
         .addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
           @Override public void onPropertyChanged(Observable sender, int propertyId) {
-            View decor = (ViewGroup) getWindow().getDecorView();
+            View decor = getWindow().getDecorView();
             decor.getViewTreeObserver()
                 .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                   @Override public boolean onPreDraw() {

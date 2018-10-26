@@ -80,7 +80,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/am__dimes_16dp"
+        android:contentDescription="@string/am__main_desc_change_location"
         android:onClick="@{fabClick}"
+        android:visibility="gone"
         app:srcCompat="@android:drawable/ic_dialog_email"
         />
 

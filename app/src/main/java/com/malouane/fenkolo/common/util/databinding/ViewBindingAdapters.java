@@ -19,7 +19,7 @@ public class ViewBindingAdapters {
   public static void showLongMessage(View view, String text,
       BaseTransientBottomBar.BaseCallback callback) {
     if (text != null) {
-      Snackbar snackbar = Snackbar.make(view, (CharSequence) text, 0);
+      Snackbar snackbar = Snackbar.make(view, text, 0);
       if (callback != null) {
         snackbar.addCallback(callback);
       }
