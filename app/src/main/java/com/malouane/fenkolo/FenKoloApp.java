@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.facebook.stetho.Stetho;
-import com.google.android.gms.ads.MobileAds;
-import com.malouane.data.BuildConfig;
 import dagger.android.DispatchingAndroidInjector;
 import io.reactivex.plugins.RxJavaPlugins;
 import javax.inject.Inject;
@@ -15,11 +13,13 @@ public class FenKoloApp extends DaggerApp {
 
   @Inject DispatchingAndroidInjector<Activity> activityDispatchingInjector;
 
+  public static final String FEN_KOLO_PRES = "FEN_KOLO_PRES";
+  public static final String KEY_LOCATION = "KEY_LOCATION";
+
   @Override public void attachBaseContext(Context context) {
     super.attachBaseContext(context);
     MultiDex.install(this);
   }
-
 
   @Override public void onCreate() {
     super.onCreate();
@@ -29,7 +29,5 @@ public class FenKoloApp extends DaggerApp {
     Stetho.initializeWithDefaults(this);
 
     RxJavaPlugins.setErrorHandler(Timber::e);
-
-    MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
   }
 }
