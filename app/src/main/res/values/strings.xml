@@ -2,8 +2,6 @@
   <string name="app_name">FenNaklo</string>
   <string name="am__error_unknown">You are offline!\n, Please check your network connection.</string>
   <string name="am__error_server">Server Error!\n, We couldn\t connect to server at the moment.</string>
-  <string name="am__action_retry">Retry</string>
-  <string name="am__error_location">We Couldn\'t Get Your Location</string>
   <string name="empty_icon" translatable="false">¯\\_(ツ)_/¯</string>
   <string name="restaurant_list_empty">Sorry, we couldn\'t find any restaurant \n of this type</string>
   <string name="tips_list_empty">Sorry, we couldn\'t find any tips for this restaurant</string>
@@ -11,7 +9,6 @@
   <string name="am__permission_location"> We need your permission to use your location </string>
   <string name="am__permission_title">Permit</string>
   <string name="am__permission_cancel">Cancel</string>
-  <string name="am__permission_retry">Retry</string>
   <string name="am__permission_granted">Permission Granted!</string>
   <string name="am__permission_denied">Permission Denied!</string>
   <string name="am__permission_location_title">Location</string>
@@ -19,5 +16,8 @@
   <string name="am__tips_list_likes_count">Likes: %s</string>
   <string name="am__tips_list_dislikes_count">DisLikes: %s</string>
   <string name="am__main_desc_change_location">Change location</string>
+
+  <string name="am__main_desc_venue_image">Venue Image</string>
+  <string name="am__main_desc_venue_location">Venue Location</string>
 
 </resources>

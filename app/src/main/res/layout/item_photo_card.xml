@@ -31,6 +31,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:loadUrl="@{tip.photo}"
+        android:contentDescription="@string/am__main_desc_venue_image"
         tools:src="@tools:sample/backgrounds/scenic"
         />
 
@@ -55,7 +56,6 @@
         android:layout_margin="@dimen/am__dimes_8dp"
         android:layout_marginEnd="8dp"
         android:maxLines="1"
-        android:text="tip.date"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="@id/am__tip_item_user_tv"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +107,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:loadUrl="@{tip.photo}"
         app:srcCompat="@drawable/bowl"
+        android:contentDescription="@string/am__main_desc_venue_image"
         />
     <TextView
         android:id="@+id/am__tip_item_dislikes_tv"

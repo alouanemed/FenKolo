@@ -15,10 +15,24 @@ android {
         multiDexEnabled true
     }
 
+    signingConfigs {
+        config {
+            keyAlias 'alouanemed'
+            keyPassword 'alouanemed'
+            storeFile file('alouanemedkey.jks')
+            storePassword 'alouanemed'
+        }
+    }
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
         release {
+            applicationIdSuffix ".prod"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     sourceSets {

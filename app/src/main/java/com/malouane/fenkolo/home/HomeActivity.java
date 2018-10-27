@@ -11,6 +11,7 @@ import com.malouane.fenkolo.databinding.ActivityHomeBinding;
 import com.malouane.fenkolo.features.categories.CategoriesViewModel;
 import dagger.android.support.DaggerAppCompatActivity;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 public class HomeActivity extends DaggerAppCompatActivity implements View.OnClickListener {
   @Inject ViewModelProvider.Factory viewModelFactory;
@@ -31,9 +32,21 @@ public class HomeActivity extends DaggerAppCompatActivity implements View.OnClic
     binder.setViewModel(viewModel);
     binder.setFabClick(this);
     viewModel.loadCategoriesList();
+
+    if (bundle != null) {
+      Timber.d("bundle.getInt(\"tabState\"): " + bundle.getInt("tabState"));
+      binder.viewPager.setCurrentItem(bundle.getInt("tabState"));
+    }
   }
 
   @Override public void onClick(View view) {
 
   }
+
+  @Override
+  protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt("tabState", binder.tabs.getSelectedTabPosition());
+  }
+
 }
