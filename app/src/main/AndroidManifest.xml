@@ -2,49 +2,58 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.malouane.fenkolo">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <application
-        android:name=".FenKoloApp"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".startup.LaunchActivity"
-            android:noHistory="true"
-            android:theme="@style/AppTheme.Launch">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+  <application
+      android:name=".FenKoloApp"
+      android:allowBackup="true"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/AppTheme">
+    <receiver android:name="com.malouane.fenkolo.widget.FenKoloWidget">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+      </intent-filter>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".home.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-      <activity
-          android:name="com.malouane.fenkolo.features.details.RestaurantDetailsActivity"
-          android:label=""
-          android:parentActivityName=".home.HomeActivity"
-          android:theme="@style/AppTheme.Venue">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".home.HomeActivity"/>
-      </activity>
+      <meta-data
+          android:name="android.appwidget.provider"
+          android:resource="@xml/fen_kolo_widget_info"/>
+    </receiver>
 
-      <service
-          android:name=".features.location.ScheduledJobService"
-          android:exported="false">
-        <intent-filter>
-          <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
-        </intent-filter>
-      </service>
+    <activity
+        android:name=".startup.LaunchActivity"
+        android:noHistory="true"
+        android:theme="@style/AppTheme.Launch">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
 
-    </application>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+        android:name=".home.HomeActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
+    <activity
+        android:name=".features.details.RestaurantDetailsActivity"
+        android:label=""
+        android:parentActivityName=".home.HomeActivity"
+        android:theme="@style/AppTheme.Venue">
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value=".home.HomeActivity"/>
+    </activity>
+
+    <service
+        android:name=".features.location.ScheduledJobService"
+        android:exported="false">
+      <intent-filter>
+        <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+      </intent-filter>
+    </service>
+  </application>
 
 </manifest>

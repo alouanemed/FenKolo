@@ -56,6 +56,7 @@ ext {
       "com.android.support:multidex:$multidexVersion",
                               "com.google.android.gms:play-services-location:$playServicesVersion",
                               "com.firebase:firebase-jobdispatcher:$fbVersion",
+                              "com.orhanobut:hawk:2.0.1",
                               "com.google.dagger:dagger:${daggerVersion}",
                               "com.google.dagger:dagger-android-support:${daggerVersion}",
                               "android.arch.lifecycle:runtime:$lifecycleVersion",

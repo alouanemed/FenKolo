@@ -11,6 +11,7 @@ import android.view.ViewTreeObserver;
 import com.malouane.fenkolo.AppNavigator;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.databinding.ActivityDetailsBinding;
+import com.orhanobut.hawk.Hawk;
 import dagger.android.support.DaggerAppCompatActivity;
 import java.util.Objects;
 import javax.inject.Inject;
@@ -36,6 +37,7 @@ public class RestaurantDetailsActivity extends DaggerAppCompatActivity {
     viewModel.getVenueDetails()
         .addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
           @Override public void onPropertyChanged(Observable sender, int propertyId) {
+            Hawk.put("VenueDetailsModel", viewModel.getVenueDetails().get());
             View decor = getWindow().getDecorView();
             decor.getViewTreeObserver()
                 .addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -58,7 +60,8 @@ public class RestaurantDetailsActivity extends DaggerAppCompatActivity {
   }
 
   @Override public Intent getParentActivityIntent() {
-    return super.getParentActivityIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    return Objects.requireNonNull(super.getParentActivityIntent())
+        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
   }
 
 }

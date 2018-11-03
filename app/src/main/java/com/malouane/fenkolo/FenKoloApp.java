@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.facebook.stetho.Stetho;
+import com.orhanobut.hawk.Hawk;
 import dagger.android.DispatchingAndroidInjector;
 import io.reactivex.plugins.RxJavaPlugins;
 import javax.inject.Inject;
@@ -29,5 +30,7 @@ public class FenKoloApp extends DaggerApp {
     Stetho.initializeWithDefaults(this);
 
     RxJavaPlugins.setErrorHandler(Timber::e);
+
+    Hawk.init(this).build();
   }
 }
