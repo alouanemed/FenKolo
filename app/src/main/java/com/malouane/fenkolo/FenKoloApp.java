@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import com.facebook.stetho.Stetho;
+import com.google.android.gms.ads.MobileAds;
+import com.malouane.data.BuildConfig;
 import com.orhanobut.hawk.Hawk;
 import dagger.android.DispatchingAndroidInjector;
 import io.reactivex.plugins.RxJavaPlugins;
 import javax.inject.Inject;
 import timber.log.Timber;
-
 public class FenKoloApp extends DaggerApp {
 
   @Inject DispatchingAndroidInjector<Activity> activityDispatchingInjector;
@@ -32,5 +33,7 @@ public class FenKoloApp extends DaggerApp {
     RxJavaPlugins.setErrorHandler(Timber::e);
 
     Hawk.init(this).build();
+
+    MobileAds.initialize(this, BuildConfig.ADMOB_APP_ID);
   }
 }
