@@ -41,7 +41,7 @@ public class ScheduledJobService extends JobService
   @Override
   public void onConnected(@Nullable Bundle bundle) {
     LocationServices.FusedLocationApi.requestLocationUpdates(this.mGoogleApiClient,
-        mLocationRequest, this); // This is the changed line.
+        mLocationRequest, this);
   }
 
   @Override

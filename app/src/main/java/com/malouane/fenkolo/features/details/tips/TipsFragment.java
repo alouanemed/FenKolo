@@ -63,6 +63,7 @@ public class TipsFragment extends Fragment
       viewModel.loadRestaurantTips(restaurantId, false);
     }
 
+    assert viewModel != null;
     viewModel.getError()
         .addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
           @Override public void onPropertyChanged(Observable sender, int propertyId) {

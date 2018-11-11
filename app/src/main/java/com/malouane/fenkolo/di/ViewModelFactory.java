@@ -31,7 +31,8 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     this.context = context;
   }
 
-  @Override public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+  @SuppressWarnings("ConstantConditions") @Override
+  public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
     if (modelClass == LaunchViewModel.class) {
       return (T) new LaunchViewModel(context, typeGetAllUseCase);
     } else if (modelClass == CategoriesViewModel.class) {
