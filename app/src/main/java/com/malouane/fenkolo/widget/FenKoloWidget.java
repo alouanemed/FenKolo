@@ -1,7 +1,6 @@
 package com.malouane.fenkolo.widget;
 
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -9,7 +8,7 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 import com.malouane.fenkolo.R;
 import com.malouane.fenkolo.features.details.VenueDetailsModel;
-import com.malouane.fenkolo.home.HomeActivity;
+import com.malouane.fenkolo.startup.LaunchActivity;
 import com.orhanobut.hawk.Hawk;
 
 /**
@@ -24,17 +23,13 @@ public class FenKoloWidget extends AppWidgetProvider {
 
     RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.item_restaurent_wdiget);
     if (model != null && model.getName() != null) {
-      views.setTextViewText(R.id.am__restaurant_list_item_name_tv, model.getName());
-      Intent appIntent = new Intent(context, HomeActivity.class);
+      views.setTextViewText(R.id.am__restaurant_list_item_name_tv,
+          model.getName() + "\n \n" + model.formatLocation());
 
-      TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-      stackBuilder.addParentStack(HomeActivity.class);
-      stackBuilder.addNextIntent(appIntent);
+      Intent intent = new Intent(context, LaunchActivity.class);
+      PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-      PendingIntent appPendingIntent =
-          stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-      views.setOnClickPendingIntent(R.id.am__restaurant_list_item_name_tv, appPendingIntent);
+      views.setOnClickPendingIntent(R.id.am__restaurant_list_item_name_tv, pendingIntent);
     }
 
     appWidgetManager.updateAppWidget(appWidgetId, views);
