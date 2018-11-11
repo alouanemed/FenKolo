@@ -9,6 +9,7 @@ import com.malouane.fenkolo.common.BaseAndroidViewModel;
 import com.malouane.fenkolo.domain.entity.VenueDetails;
 import com.malouane.fenkolo.domain.interactor.CustomPair;
 import com.malouane.fenkolo.domain.interactor.VenueGetDetailsUseCase;
+import com.orhanobut.hawk.Hawk;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import org.jetbrains.annotations.NotNull;
@@ -58,6 +59,7 @@ public class RestaurantDetailsViewModel extends BaseAndroidViewModel {
         loading.set(false);
         venueDetails.set(mapper.toLocal(v));
         empty.set(venueDetails.get() == null);
+        Hawk.put("VenueDetailsModel", mapper.toLocal(v));
       }
 
       @Override public void onError(Throwable e) {
