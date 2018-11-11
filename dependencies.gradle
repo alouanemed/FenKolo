@@ -36,6 +36,7 @@ ext {
   playServicesVersion = '16.0.0'
   rxPermissionVersion = '0.10.2'
   snackyVersion = '1.0.3'
+  fbVersion = '0.8.5'
 
   // Testing
   jUnitVersion = '4.12'
@@ -54,7 +55,7 @@ ext {
 
       "com.android.support:multidex:$multidexVersion",
                               "com.google.android.gms:play-services-location:$playServicesVersion",
-                              "com.google.android.gms:play-services-ads:$playServicesVersion",
+                              "com.firebase:firebase-jobdispatcher:$fbVersion",
                               "com.google.dagger:dagger:${daggerVersion}",
                               "com.google.dagger:dagger-android-support:${daggerVersion}",
                               "android.arch.lifecycle:runtime:$lifecycleVersion",

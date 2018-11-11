@@ -35,7 +35,7 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
       String radius, boolean refresh) {
     List<Venue> list = new ArrayList<Venue>();
     return venueRepository.findByType(locationLatLong, catId, query, radius, refresh)
-        .doOnError(it -> Timber.d("getVenues Error" + catId))
+        .doOnError(Timber::d)
         .map(it -> {
           for (VenueLocalModel item : it) {
             list.add(mapper.venueToEntity(item));
@@ -47,7 +47,7 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
   @Override public Observable<List<VenueType>> getVenueTypes() {
     List<VenueType> list = new ArrayList<VenueType>();
     return venueTypeRepository.getAllCategories()
-        .doOnError(it -> Timber.d("getVenueTypes Error" + it))
+        .doOnError(Timber::d)
         .map(it -> {
           for (VenuesTypeLocalModel item : it) {
             list.add(mapper.localVenueTypeToEntity(item));
@@ -58,10 +58,8 @@ public class FenKoloDataMapperImpl implements FenKoloDataGateway {
 
   @Override public Observable<VenueDetails> getVenueDetails(String id, boolean refresh) {
     return venueRepository.getVenueDetailsOf(id, refresh)
-        .doOnError(it -> Timber.d("getVenueDetails Error" + it))
-        .map(it -> {
-          return mapper.venueDetailsToEntity(it);
-        });
+        .doOnError(Timber::d)
+        .map(it -> mapper.venueDetailsToEntity(it));
   }
 
   @Override public Observable<List<VenueTip>> getVenueTips(String venueId, boolean refresh) {
