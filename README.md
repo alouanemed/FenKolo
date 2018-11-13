@@ -4,6 +4,8 @@
 
 Discover nearest restaurants and snacks sorted by cuisine and curated using tips shared by people all over the world.
 
+> Part of the Android Developer Nanodegree Program. Check my graduation [Certificat](https://graduation.udacity.com/confirm/FZVNQDEG).
+
 ## Android development
 
  * Written in Java. one of the Udacity requirements.
